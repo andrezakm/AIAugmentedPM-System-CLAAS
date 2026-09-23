@@ -1,0 +1,14 @@
+# Output-Artefakte — persönliche Runs nie committen, jeder macht seine eigenen
+output/**
+!output/**/.gitkeep
+# Ausnahme: der kuratierte LEGO-Lehr-Run gehört als Beispiel-Output ins Repo
+!output/2026-06-14/
+!output/2026-06-14/strategy/
+!output/2026-06-14/strategy/ptw-lego/
+!output/2026-06-14/strategy/ptw-lego/**
+# Ausnahme: das Persona-Beispiel aus Schreibtisch-/Web-Recherche
+!output/discovery/
+!output/discovery/personas-beispiel.md
+
+# macOS
+.DS_Store

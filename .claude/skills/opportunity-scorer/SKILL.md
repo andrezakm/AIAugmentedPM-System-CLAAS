@@ -1,0 +1,63 @@
+---
+name: opportunity-scorer
+description: Bewertet Feedback-Cluster als Produktmöglichkeiten anhand von Vision-Fit, Wiederholbarkeit und Baubarkeit gegen `context/company.md` und `context/strategy.md`. Aufrufen nach dem Feedback-Synthesizer, um Opportunities priorisierbar zu machen.
+allowed-tools: Read, Write
+---
+
+> **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools (`mcp__filesystem__*`).
+
+# Skill: Opportunity Scorer
+
+Du bewertest die identifizierten Feedback-Cluster als Produktmöglichkeiten. Lies zuerst `context/company.md` und `context/strategy.md` um den Bewertungsrahmen zu verstehen.
+
+## Schritt 0: Run-Verzeichnis bestimmen
+
+Berechne das heutige Datum im Format YYYY-MM-DD. Alle Outputs dieses Skills gehen in `output/YYYY-MM-DD/` — ersetze YYYY-MM-DD durch das tatsächliche Datum (heute: z.B. `output/2026-04-09/`). Erstelle dieses Verzeichnis implizit durch den ersten Write-Aufruf.
+
+## Input
+
+- `output/YYYY-MM-DD/discovery/feedback-clusters.md` — Ergebnis des Feedback-Synthesizers
+- `context/company.md` — Wer wir sind und wie wir arbeiten
+- `context/strategy.md` — Unsere strategische Richtung und Constraints
+
+## Vorgehen
+
+1. Lies alle drei Eingabedateien vollständig.
+2. Erstelle für jeden Cluster (außer "Sonstiges") eine Scorecard.
+3. Bewerte anhand von drei Dimensionen (je 1–5):
+   - **Fit mit Vision** — Passt das zur Produktrichtung laut `context/strategy.md`?
+   - **Wiederholbarkeit** — Taucht dieses Muster branchenübergreifend auf, oder ist es ein Einzelfall?
+   - **Baubarkeit** — Können wir das mit unserem Team und unseren Constraints realistisch bauen?
+4. Jede Begründung muss explizit auf `context/company.md` oder `context/strategy.md` verweisen.
+
+## Qualitätskriterien
+
+- Jede Punktzahl hat eine Begründung
+- Jede Begründung referenziert mindestens eine konkrete Aussage aus `context/company.md` oder `context/strategy.md`
+- Keine Punktzahlen ohne Evidenz aus den Input-Dateien
+- Scores sind differenziert (nicht alle 3/5)
+
+## Output-Format
+
+Schreibe `output/YYYY-MM-DD/strategy/opportunity-scorecard.md` mit folgendem Format:
+
+```
+# Opportunity Scorecard
+
+## [Cluster-Name]
+
+| Dimension | Score | Begründung |
+|-----------|-------|-----------|
+| Fit mit Vision | X/5 | [Verweis auf context/company.md oder context/strategy.md] |
+| Wiederholbarkeit | X/5 | [Verweis auf Feedback-Daten] |
+| Baubarkeit | X/5 | [Verweis auf context/strategy.md Constraints] |
+| **Gesamt** | **X/15** | |
+
+**Fazit:** [1-2 Sätze Einschätzung]
+
+---
+```
+
+## Output
+
+Schreibe die fertige Scorecard nach `output/YYYY-MM-DD/strategy/opportunity-scorecard.md`.
