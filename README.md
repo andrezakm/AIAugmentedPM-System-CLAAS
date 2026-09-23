@@ -30,7 +30,7 @@ Zwei aufeinander aufbauende Kurse führen durch das System — jeder mit kleinen
 
 | Aufruf | Präsentation | Thema |
 |---|---|---|
-| `/kurs` | [doc/PM-System-Übersicht.html](doc/PM-System-Übersicht.html) | Das System verstehen — Struktur, Flows, Anpassung |
+| `/kurs` | [doc/PM-System-Übersicht.html](doc/PM-System-Übersicht.html) | Die interaktive Fassung der Circle-Lektionen dieser Woche — Schritt N im Kurs = Lektion N |
 | `/zeig_mir_teamwork` | [doc/PM-Teamwork-Übersicht.html](doc/PM-Teamwork-Übersicht.html) | Teamwork — Zimmer / Wohnzimmer, Übergabe-Flow |
 
 **Optionaler Zusatz:** `/PTW-workshop` ([doc/PTW-Workshop-Anleitung.html](doc/PTW-Workshop-Anleitung.html)) — ein Play-to-Win-Strategie-Workshop mit vollständiger Fallstudie (LEGO 2004).
@@ -144,8 +144,8 @@ Lauf-Artefakte landen in `output/YYYY-MM-DD/` — ein Run, ein Verzeichnis. Lebe
 
 ```
 Schritt 1 — Alleine starten
-  /kurs                System verstehen, Notizen machen · context/ befüllen
-                       /system-auditor · ersten Flow manuell durchlaufen
+  /kurs                die sechs Schritte der Woche, parallel zu den Circle-Lektionen:
+                       System, Überblick, Muster, drei Flows · Ideen für den eigenen Flow notieren
 
 Schritt 2 — Mit dem Team
   /zeig_mir_teamwork   Teamwork-Prinzipien (Zimmer / Wohnzimmer)

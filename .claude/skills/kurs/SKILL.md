@@ -1,439 +1,308 @@
 ---
 name: kurs
-description: Interaktiver 12-Schritte-Kurs, der erklärt wie der pm-workspace aufgebaut ist, welche Flows und Skills wofür da sind und wie man das System auf den eigenen Kontext anpasst und erweitert. Aufrufen mit `/kurs`, wenn der Woche-5-System-Kurs durchlaufen werden soll.
+description: Interaktive Version der sechs Woche-5-Circle-Lektionen — Schritt N im Kurs entspricht Lektion N in Circle, live im Repo durchgespielt statt nur gelesen. Aufrufen mit `/kurs`, wenn der Woche-5-System-Kurs durchlaufen werden soll.
 disable-model-invocation: true
 ---
 
 # Kurs: Woche 5 — Das System
 
-Willkommen in Woche 5. Heute baust du nichts. Du schaust zu — und verstehst, wie das System das du vor dir hast aufgebaut ist, was es kann, und wie du es auf deine Realität anpasst.
+Willkommen in Woche 5. Dieser Kurs ist die interaktive Version der sechs Lektionen, die du diese Woche in Circle liest — gleiche Reihenfolge, gleicher Inhalt, aber hier machst du es live im Repo statt nur zu lesen: **Schritt N im Kurs = Lektion N in Circle.**
 
-Der Kurs hat 12 Schritte. Du navigierst mit "weiter" (nächster Schritt) oder "Schritt X" (direkt springen).
+Du navigierst mit "weiter" (nächster Schritt) oder "ab Schritt 4" (direkt springen). Du kannst jederzeit pausieren und später weitermachen — sag einfach, bei welchem Schritt du stehen geblieben bist.
 
-**Kein Hands-on erforderlich.** Aber: Alles hier ist live. Wenn du etwas ausprobieren willst, kannst du jederzeit aus dem Kurs heraus einen Skill aufrufen — und dann weitermachen.
+**Grobe Zeitplanung:**
+- Schritt 1–3 (Struktur, Überblick, Muster): zusammen ca. 25 Minuten
+- Schritt 4 (Grund-Flow, mit vier Haltepunkten): anderthalb bis zwei Stunden, wenn du an den Haltepunkten wirklich liest — mit der Abkürzung über `/build-eval` deutlich kürzer. Der größte Einzelschritt.
+- Schritt 5 (Türsteher-Flow): ca. 15–20 Minuten
+- Schritt 6 (Persona als Linse): ca. 20–25 Minuten
 
-**Empfehlung:** Mach dir bei den Reflexionsfragen kurze Notizen — was bei dir heute so ist, was fehlt, was du dir vorstellst. Am Ende des Kurses kannst du Claude bitten, gemeinsam mit dir einen konkreten Bauplan zu erstellen: was du als erstes anpasst, welchen Flow du startest, was du neu baust.
+Macht zusammen etwa zweieinhalb bis drei Stunden für den vollständigen Durchlauf. Du musst das nicht an einem Stück machen — am besten verteilst du die Schritte über die Woche, passend zu den Lektionen.
 
----
+## Für wen — was hast du davon?
+
+**Als PM** siehst du hier zum ersten Mal, wie die einzelnen Skills aus den letzten Wochen zu einem System zusammenwachsen: derselbe Kontext, dieselbe Ablage, dieselbe Übergabe-Logik, egal welcher Skill gerade läuft. Am Ende weißt du nicht nur, welcher Skill was tut, sondern auch, wo du selbst eingreifen würdest — welcher Cluster nicht in dein `context/strategy.md` passt, welche Anfrage zu Recht zurückgeht, welche Punktzahl sich ändert, sobald du eine Persona als Linse davorlegst.
+
+**Als Designerin oder Designer** ist das genauso deins: Eine Persona, ein Interface-Zustand, die Begründung für eine Entscheidung — das sind alles Textdateien, die in dasselbe Fundament aus `context/`, `input/` und `output/` passen, ohne eigenes Tool und eigene Ablage. In Schritt 6 siehst du das konkret: Eine Persona, die du selbst formulieren oder mit formen würdest, verändert direkt, wie eine Opportunity bewertet wird — nicht als Stimmungsbild, sondern als Zahl mit Begründung.
 
 ## Lernziele
 
 Nach diesem Kurs weißt du:
-- Wie der pm-workspace aufgebaut ist und was wo liegt
-- Welche Flows für welche PM-Situationen relevant sind
-- Wie du das System auf deinen Kontext anpasst
-- Wie du es lokal erweiterst — manuell, halbautomatisch, automatisch
-- Wo du neue Skills findest und wie du sie integrierst
-- Den Unterschied zwischen persönlichem Assistenten und Team-Interface
-
-**Was dieser Kurs nicht ist:** Eine Tool-Demo. Das Ziel ist nicht "ich weiß wie man /feedback-synthesizer aufruft" — sondern "ich verstehe warum das System so gebaut ist und wo ich eingreifen würde."
+- Was aus einzelnen Skills ein System macht — und wo genau der goldene Dreiklang aus Woche 1 dauerhaft eingebaut ist
+- Wie der Workspace aufgeteilt ist: die sieben Bereiche, ihre Skills, die zwei Ablagekonventionen für Output
+- Welche Grundmuster es gibt, um Skills zu kombinieren — nicht nur die eine vorgegebene Kette
+- Wie sich der komplette Grund-Flow anfühlt, vom Rohfeedback bis zur Übergabe, inklusive der vier Stellen, an denen du selbst liest und entscheidest
+- Wie ein einzelner Skill als Türsteher vor dir steht, bevor eine Anfrage überhaupt bei dir landet
+- Wie ein Ergebnis aus einem Bereich (eine Persona) einen Skill in einem ganz anderen Bereich schärfer macht, ohne dass dieser Skill davon in seiner eigenen Anleitung etwas weiß
 
 ---
 
-## Schritt 1: Warum ein System — und nicht nur ein Prompt?
+## Schritt 1 ↔ Lektion 01: Was ist ein System?
 
-Du hast in den letzten Wochen einzelne Skills kennengelernt: Feedback analysieren, Specs schreiben, Prototypen bauen. Das Problem mit einzelnen Skills: sie arbeiten nicht zusammen. Jeder kennt seinen Kontext nicht. Jeder fängt von vorn an.
+Du hast in den letzten Wochen einzelne Skills gebaut und benutzt — einen, der Interviews analysiert, einen, der eine Spezifikation schreibt, einen, der Abnahmekriterien formuliert. Jeder für sich hat funktioniert. Aber jeder stand für sich: eigener kleiner Kontext, kein Wissen davon, was der Skill davor produziert hat. Diese Woche wird daraus ein System — nicht durch mehr Automatisierung, sondern durch denselben goldenen Dreiklang aus Woche 1, dieses Mal dauerhaft eingebaut statt bei jeder Aufgabe neu gedacht:
 
-Ein System löst das. Nicht durch mehr Automatisierung — sondern durch **gemeinsamen Kontext**.
+- **Ergebnis** → landet immer im selben Ordner: `output/`
+- **Kontext** → zweigeteilt wie in Woche 1: `context/` ist der permanente, statische Teil (wer ihr seid, welche Strategie ihr verfolgt), `input/` ist der dynamische Teil (das Rohmaterial für genau diesen einen Lauf)
+- **Unterschritte** → die Skills selbst. Statt eines riesigen Auftrags von "rohes Feedback" bis "fertiger Handoff" gibt es viele kleine, fokussierte Skills, die hintereinander laufen können
 
-Das ist der Kern des pm-workspace:
+Drei Dinge sorgen dafür, dass das wirklich zusammenklickt:
 
-```
-context/ + input/  →  Skills  →  output/YYYY-MM-DD/
-```
+**Struktur.** `context/`, `input/` und `output/` bilden das Fundament eines ganzen Repos — des Projektordners, der Kontext, Rohdaten, Ergebnisse und die Skills selbst an einem Ort versioniert enthält.
 
-Die Skills kennen dein Unternehmen. Deine Strategie. Dein Team. Dein Produkt. Sie lesen das vor jedem Lauf. Was rauskommt ist nicht generisch — es ist auf dich kalibriert.
+**Der goldene Dreiklang** selbst, wie oben.
 
-**Die zweite Idee:** Ein Run = ein Verzeichnis. Alles was heute entsteht liegt in `output/2026-04-11/`. Morgen in `output/2026-04-12/`. Kein Überschreiben. Kein Verlust. Du kannst Runs vergleichen.
+**Vereinheitlichung.** Jeder Skill hat dieselbe Form: eine `SKILL.md`, die genau beschreibt was er tut, dazu ein kurzes README als Zusammenfassung. Dieselbe Kontext-Regel für alle. Dieselbe Output-Konvention für alle. Alles Markdown — ein einfaches Textformat mit Überschriften und Listen, ohne Word-Formatierung.
 
-**Reflexion:** Was passiert bei dir heute wenn du eine Entscheidung vorbereiten willst? Wie viel Zeit geht für Strukturierung drauf — bevor du überhaupt anfängst zu denken?
+Weil alle Teile dieselbe Form haben und denselben Kontext lesen, passen sie ineinander. Der Output des einen Skills ist automatisch lesbarer Input für den nächsten.
 
-> **Tipp:** Notier dir deine Antwort — am Ende des Kurses bauen wir daraus zusammen einen konkreten Plan.
+**Kleine Aufgabe:** Öffne `context/company.md` und danach eine beliebige `SKILL.md`, zum Beispiel `.claude/skills/feedback-synthesizer/SKILL.md`. Wirf dann einen kurzen Blick in den Ordner `output/` — du siehst, dass dort bereits einzelne frühere Läufe liegen.
+
+**Reflexion:** Welcher Skill aus den letzten Wochen hätte am meisten von gemeinsamem Kontext profitiert — wo hast du ihm bisher jedes Mal von Neuem erklärt, was er eigentlich schon hätte wissen können?
 
 Sag "weiter" für Schritt 2.
 
 ---
 
-## Schritt 2: Anatomie — Was liegt wo
+## Schritt 2 ↔ Lektion 02: Das System im Überblick
 
-Der pm-workspace hat drei Schichten:
+Das System gliedert sich in sieben Bereiche, ungefähr entlang des Wegs, den eine Idee von rohem Material bis zur Übergabe an die Entwicklung nimmt:
 
 ```
-pm-workspace/
-│
-├── context/          ← Das Hirn des Systems
-│   ├── company.md    Wer ihr seid, wie ihr arbeitet
-│   ├── strategy.md   Wohin ihr wollt, was euch begrenzt
-│   ├── product.md    Was ihr baut, für wen
-│   ├── team.md       Wer da ist, welche Fähigkeiten
-│   ├── metrics.md    Woran ihr Erfolg messt
-│   ├── roadmap.md    Was geplant ist
-│   └── learnings.md  Was ihr gelernt habt
-│
-├── input/            ← Rohdaten rein
-│   ├── raw_feedback/ Slack, Emails, Interview-Notizen
-│   ├── interviews/   Qualitative Interview-Dateien
-│   └── case/         Briefs und Datendateien
-│
-├── output/           ← Artefakte raus
-│   └── YYYY-MM-DD/   Ein Verzeichnis pro Run
-│
-├── scripts/          ← Persönliche Sandbox
-│   └── ...           Neue Skills in Entwicklung
-│
-└── .claude/
-    └── skills/       ← Die Skills (flach, aber konzeptuell gegliedert)
+Discovery     Was sagen Kunden, Nutzer, Daten?
+              /feedback-synthesizer · /interview-analyzer · /user-personas
+
+Strategy      Was baut ihr, und warum?
+              /opportunity-scorer · /decision-brief · /devils-advocate ·
+              /success-metrics · /insight-validator · /business-case-debater
+
+Roadmap       In welcher Reihenfolge?
+              /roadmap-intake · /product-roadmap
+
+Spec & Eval   Was genau wird gebaut, wann ist es gut?
+              /spec-writer · /eval-writer · /story-map · /build-eval
+
+Prototyping   Funktioniert die Idee als Artefakt?
+              /prototype-builder · /option-stormer · /eval-runner
+
+Handoff       Was braucht Dev zum Start?
+              /handoff-packager
+
+Meta          Wo stehe ich, was fehlt?
+              /system-auditor
 ```
 
-Die `.claude/skills/`-Struktur ist technisch flach — dein Agent (Copilot) braucht das so. Konzeptuell sind die Skills in 7 Bereiche gegliedert: Discovery, Strategy, Roadmap, Spec & Eval, Prototyping, Handoff, Meta.
+Alle Skills in allen sieben Bereichen lesen zuerst denselben Grund: den Ordner `context/`. Sieben Dateien liegen dort — `company.md`, `strategy.md`, `product.md`, `team.md`, `metrics.md`, `roadmap.md`, `learnings.md`. Ohne diesen Kontext gibt es keinen Output, für keinen Skill.
 
-**Output-Konvention:** Lauf-Artefakte (Spec, Eval, Personas, Prototyp …) landen in `output/YYYY-MM-DD/<bereich>/` — ein Lauf, ein Verzeichnis. Lebender Zustand, der über Läufe hinweg wächst — die Roadmap, das System-Audit — liegt stabil unter `output/roadmap/` bzw. `output/meta/`.
+Für die Ergebnisse gelten zwei Ablagekonventionen: Lauf-Artefakte — eine Spec, eine Scorecard, ein Prototyp — landen im datierten Ordner `output/YYYY-MM-DD/<bereich>/`, ein Lauf, ein Verzeichnis, nichts wird überschrieben. Lebender Zustand, der über viele Läufe hinweg wächst, liegt dagegen stabil an einem festen Ort: die Roadmap unter `output/roadmap/`, das System-Audit unter `output/meta/`.
 
-**Visuelle Übersicht:** `doc/System-Karte.html` zeigt alle 7 Bereiche, alle Skills und den Fluss dazwischen auf einen Blick — im Browser öffnen.
+Ein Punkt braucht kurz Gewöhnung: Die Skills liegen technisch flach nebeneinander im Ordner `.claude/skills/` — kein Unterordner für Discovery, keiner für Strategy. Das ist der Preis einer bewussten Entscheidung: Alles, was das System kann, ist als Skill gebaut, damit man es teilen, im Team austauschen und über das Menü aufrufen kann. Dafür müssen alle Skills an einem einzigen, festen Ort liegen. Deshalb gibt es ein Inhaltsverzeichnis gleich zweimal: als Text im Ordner `skills/` (ein kurzes README pro Bereich), und visuell als System-Karte unter `doc/System-Karte.html` — dort siehst du alle sieben Bereiche, ihre Skills und den typischen Fluss dazwischen auf einen Blick.
 
-**Das Wichtigste:** `context/` wird von jedem Skill automatisch gelesen. Du befüllst es einmal. Danach kennt das System deinen Kontext — bei jedem Aufruf, bei jedem Skill.
+Und noch ein Satz dazu: Diese Ordnerstruktur ist eine sinnvolle Wahl, keine einzig richtige. Wer mit vielen parallelen Projekten arbeitet, könnte unter `output/` zum Beispiel noch einen Unterordner pro Projekt einziehen. Nimm sie als Ausgangspunkt, nicht als Vorgabe.
 
-**Reflexion:** Was würdest du in `context/strategy.md` schreiben? Was sind die zwei, drei Dinge die jeder Output über eure Strategie wissen müsste?
+**Aufgaben:**
+1. Öffne `doc/System-Karte.html` im Browser: in VS Code Rechtsklick auf die Datei → „Reveal in Finder" (Mac) bzw. „Reveal in File Explorer" (Windows), dann Doppelklick.
+2. Führe `/system-auditor` aus. Er zeigt dir, was in diesem Repo schon ausgefüllt ist und was noch fehlt — per Ampel: ✅ ausgefüllt, ⚠️ nur Template, ❌ fehlt. Ergebnis landet in `output/meta/system-audit.md`.
 
-> **Tipp:** Notier dir deine Antwort — am Ende des Kurses bauen wir daraus zusammen einen konkreten Plan.
+**Reflexion:** Beim Blick auf die System-Karte — welcher der sieben Bereiche wäre in deinem eigenen Alltag am dünnsten besetzt, wenn du ihn heute nachbauen würdest?
 
 Sag "weiter" für Schritt 3.
 
 ---
 
-## Schritt 3: Wie ein Skill funktioniert
+## Schritt 3 ↔ Lektion 03: Was damit möglich ist
 
-Ein Skill ist eine Markdown-Datei mit Instruktionen. Du rufst ihn mit `/skill-name` auf. Dein Agent (Copilot) liest die Datei, führt sie aus, schreibt den Output.
+Du kennst jetzt die sieben Bereiche und ihre Skills einzeln. Die eigentliche Frage an dieser Stelle ist selten technisch, sondern eine der Vorstellungskraft: Welche Flows unterstützt ein System aus Skills eigentlich, jenseits der einen vorgegebenen Kette? Sieben Grundmuster:
 
-Was passiert unter der Haube:
+1. **Ein Skill solo, als Alltagswerkzeug** — zum Beispiel `/devils-advocate` direkt aufrufen, ohne vorher durch Discovery und Strategy zu laufen.
+2. **Die Kette entlang, vom Rohmaterial bis zur Übergabe** — der vollständige Weg über alle Stationen, den du in Schritt 4 selbst gehst.
+3. **Abkürzungen über einen Orchestrator** — `/build-eval` nimmt dir Spec, Eval und Prototyp in einem Rutsch ab und überspringt automatisch, was schon existiert.
+4. **Quer verketten** — die Skills wissen nicht, in welcher Reihenfolge du sie aufrufst. Jeder Output kann in jeden Skill hineingehen, auch in einen, für den er ursprünglich gar nicht gedacht war.
+5. **Ein Artefakt als Linse für einen anderen Skill** — der Wert eines Outputs liegt manchmal nicht darin, der nächste Kettenschritt zu sein, sondern einen anderen Skill schärfer zu machen. Genau das siehst du in Schritt 6.
+6. **Gleiche Kette, anderer Kontext** — weil jeder Skill seinen Kontext aus `context/` zieht statt ihn fest einzubacken, läuft dieselbe Kette unverändert auch mit einem anderen Unternehmen oder Produkt.
+7. **Lebender Zustand, der mit jedem Lauf wächst** — die Roadmap unter `output/roadmap/` und das System-Audit unter `output/meta/` werden mit jedem Lauf fortgeschrieben, nicht neu angelegt.
 
-1. Claude liest `CLAUDE.md` — Kontext-Regel, Handoff-Grenze, Navigation
-2. Claude liest den relevanten `context/`-Files (je nach Skill)
-3. Claude liest die `SKILL.md` des aufgerufenen Skills
-4. Claude liest den Input (Feedback-Ordner, Brief, vorherige Outputs)
-5. Claude schreibt in `output/YYYY-MM-DD/[bereich]/`
+Ein Bild dazu liegt unter `doc/flows/muster-kombinationen.png` — wirf einen Blick hinein, bevor du weitermachst.
 
-Kein Zauberei. Keine Black Box. Alles liegt offen in `.claude/skills/[name]/SKILL.md`. Du kannst jeden Skill öffnen und lesen — und verstehen warum er das tut was er tut.
-
-**Das ist der Unterschied zu einem Tool:** Du bist nicht Nutzer einer Plattform. Du bist Eigentümer der Instruktionen. Du kannst sie ändern. Ergänzen. Löschen.
-
-**Reflexion:** Welchen Skill würdest du als erstes öffnen und lesen? Warum?
+**Reflexion:** Welches dieser sieben Muster würde in deiner eigenen Arbeit diese Woche am meisten helfen — und auf welche konkrete Aufgabe würdest du es anwenden?
 
 Sag "weiter" für Schritt 4.
 
 ---
 
-## Schritt 4: Die 7 Bereiche und ihre Flows
+## Schritt 4 ↔ Lektion 04: Flow 1: Der Grund-Flow — vom Rohfeedback zur Übergabe
+
+Das ist der Flow, den du als Erstes komplett durchspielen solltest — das Rückgrat, an dem sich jeder andere Flow orientiert. Acht Skills, eine Kette, vier Stellen, an denen ausdrücklich du liest und entscheidest, nicht Copilot. Rechne für einen ersten vollständigen Durchlauf mit anderthalb bis zwei Stunden — die einzelnen Skill-Läufe dauern jeweils nur wenige Minuten, die Zeit steckt im Lesen und Entscheiden an den vier Haltepunkten.
+
+Wirf vorher noch einmal einen Blick auf `doc/System-Karte.html` und auf `doc/flows/flow1-grund.png` — beide zeigen genau diesen Fluss.
+
+**1. Rohmaterial verdichten.** Alles beginnt im Ordner `input/raw_feedback/` — Slack-Exporte, E-Mail-Threads, interne Notizen, ungefiltert.
 
 ```
-Discovery          → Verstehen: Was sagen Kunden, Nutzer, Daten?
-Strategy           → Entscheiden: Was bauen wir — und warum?
-Roadmap            → Planen: In welcher Reihenfolge, mit wem?
-Spec & Eval        → Übergeben: Was genau wird gebaut, wann ist es gut?
-Prototyping        → Validieren: Funktioniert die Idee als Artefakt?
-Handoff            → Abschließen: Was braucht Dev zum Starten?
-Meta               → Navigieren: Wo stehe ich, was fehlt?
+/feedback-synthesizer input/raw_feedback
 ```
 
-Der natürliche Flow durch diese Bereiche ist die PM-Kernaufgabe — von Rohdaten zur Entscheidung zur Übergabe. Aber du musst nicht immer den ganzen Weg gehen. Manchmal fängst du bei Strategy an. Manchmal brauchst du nur einen Handoff.
+Ergebnis: `output/YYYY-MM-DD/discovery/feedback-clusters.md` — YYYY-MM-DD steht für das Datum deines Laufs.
 
-**Vier typische Flows im PM-Alltag:**
+**2. Cluster bewerten.**
 
-**Flow 1: Discovery → Entscheidung**
-Rohes Feedback liegt vor. Du willst wissen: was steckt drin, was ist die wichtigste Opportunity?
-`/feedback-synthesizer` → `/opportunity-scorer` → `/decision-brief` → `/devils-advocate`
+```
+/opportunity-scorer
+```
 
-**Flow 2: Entscheidung → Dev-Ready**
-Du weißt was gebaut werden soll. Du brauchst Spec, Prototyp, Handoff.
-`/spec-writer` → `/option-stormer` → `/eval-runner` → `/handoff-packager`
+Ergebnis: `output/YYYY-MM-DD/strategy/opportunity-scorecard.md`.
 
-**Flow 3: Strategische Analyse**
-Du willst einen Business Case durchleuchten — mit Web-Research und strukturierter Debatte.
-`/business-case-debater` (eigenständiges Subsystem, läuft interaktiv)
+**Haltepunkt 1:** Schau wirklich hin. Sind die Punktzahlen tatsächlich unterschiedlich, oder wurde der Einfachheit halber überall dieselbe Zahl vergeben? Steht hinter jeder Zahl ein Satz aus `context/company.md` oder `context/strategy.md`, oder nur eine Behauptung?
 
-**Flow 4: Insight validieren**
-Du hast eine Erkenntnis oder Hypothese — aus einem Gespräch, einem Datenpunkt, einem Bauchgefühl. Bevor du sie weiterverfolgst, prüfst du sie systematisch gegen euren Kontext: Wo widerspricht sie dem Bekannten, was ergänzt sie, welche Annahmen stecken drin, wie testest du sie billig?
-`/insight-validator` (First Impression → Up-/Downside mit Web-Research → Experiment-Design, interaktiv mit Haltepunkten)
+**3. Entscheidung ableiten.**
 
-**Daneben, als lebender Zustand:** Eine Stakeholder-Anfrage prüft `/roadmap-intake` auf Vollständigkeit — zurück mit Nachschärfungs-Hinweisen oder aufgenommen; `/product-roadmap` sequenziert aufgenommene Ideen in Now/Next/Later.
+```
+/decision-brief
+```
 
-Diese Flows sind Beispiele, keine Vorschrift — Skills lassen sich frei verketten, etwa `/user-personas` vor dem Scoring, `/success-metrics` vor der Spec, oder `/story-map` zwischen Spec und Prototyp.
+Ergebnis: `output/YYYY-MM-DD/strategy/decision-brief.md`.
 
-**Reflexion:** Welcher dieser Flows wäre heute in deinem Alltag am nützlichsten? Was liegt gerade auf deinem Tisch das du damit angehen könntest?
+**Haltepunkt 2 — der wichtigste:** Lies die Empfehlung. Prüfen, ob die genannten Zahlen wirklich aus dem Feedback stammen. Dann entscheiden, ob du weitergehst.
 
-> **Tipp:** Notier dir deine Antwort — am Ende des Kurses bauen wir daraus zusammen einen konkreten Plan.
+Sagt der Brief BUILD, kommt eine Weiche, die leicht übersehen wird: `/spec-writer` erwartet als Eingabe einen Brief — und dieser Brief ist an dieser Stelle keine neue Datei, sondern genau die, die du gerade gelesen hast:
+
+```
+/spec-writer output/YYYY-MM-DD/strategy/decision-brief.md
+```
+
+**4. Spec und Eval.**
+
+```
+/eval-writer
+```
+
+Ergebnis: `output/YYYY-MM-DD/spec-eval/spec.md` und `output/YYYY-MM-DD/spec-eval/eval.md`.
+
+**Haltepunkt 3:** Lies beide zusammen, bevor irgendetwas gebaut wird. Deckt jedes Eval-Kriterium wirklich etwas aus der Spec ab?
+
+**5. Prototyp bauen.**
+
+```
+/prototype-builder
+```
+
+Ergebnis: `output/YYYY-MM-DD/prototyping/app.html` + `data.js`. Öffne `app.html` per Doppelklick im Finder bzw. Explorer — kein Terminal, kein Server, der Browser springt direkt an.
+
+**Abkürzung:** Wer Spec, Eval und Prototyp in einem Rutsch will statt drei Skills einzeln aufzurufen, nutzt `/build-eval` mit dem Brief-Pfad als Argument — er überspringt automatisch, was schon existiert.
+
+**6. Prototyp prüfen.**
+
+```
+/eval-runner
+```
+
+Ergebnis: `output/YYYY-MM-DD/prototyping/eval-results.md`.
+
+**Haltepunkt 4:** Schau dir das Ergebnis wirklich an — vor allem jedes UNKLAR, denn das ist kein Ausweichen, sondern ein echter Hinweis, dass du selbst noch einmal reinschauen musst.
+
+**7. Übergabe bündeln.**
+
+```
+/handoff-packager
+```
+
+Ergebnis: `output/YYYY-MM-DD/handoff/handoff.md` — der letzte Halt vor der Übergabe an die Entwicklung.
+
+**Praktischer Hinweis:** Findet ein Skill den Output eines vorherigen Schritts nicht — zum Beispiel weil zwischen zwei Aufrufen ein neuer Tag angefangen hat und dadurch ein neuer `output/YYYY-MM-DD/`-Ordner entstünde — sag einfach "nimm den letzten Lauf". Copilot sucht dann im zuletzt verwendeten Datumsordner weiter, statt einen leeren neuen anzufangen.
+
+**Reflexion:** An welchem der vier Haltepunkte bist du am längsten hängen geblieben — und was hat dich dort zum Nachdenken gebracht?
 
 Sag "weiter" für Schritt 5.
 
 ---
 
-## Schritt 5: Output-Qualität — Immer prüfen, immer iterieren
+## Schritt 5 ↔ Lektion 05: Flow 2: Ein Skill solo — der Türsteher vor dem PM
 
-Das System produziert schnell. Das ist kein Grund, alles unkritisch zu übernehmen.
+Anfragen kommen aus jeder Richtung — eine weitergeleitete Mail, eine Slack-Nachricht, ein Satz im Review, der auf einmal eine neue Idee ist. Die wenigsten liefern genug, um wirklich zu entscheiden, ob sich die Idee lohnt. `/roadmap-intake` übernimmt genau diese erste Station: Er prüft nicht, ob eine Idee gut ist — das kommt später. Er prüft nur, ob genug auf dem Tisch liegt, um überhaupt zu entscheiden. Fünf Punkte, jeder mit Ja oder Nein:
 
-**Die Grundregel:** Jeden Output lesen. Verstehen was drin steht. Dann entscheiden: passt es, oder muss etwas korrigiert werden?
+- Ist konkret beschrieben, was gebaut oder geändert werden soll?
+- Ist eine Zielgruppe oder ein konkretes Problem benannt — nicht nur eine Lösung?
+- Ist der erwartete Nutzen benannt, und woran würde man erkennen, dass er eingetreten ist?
+- Gibt es eine Aufwandsschätzung, und sei sie noch so grob?
+- Lässt sich ein Bezug zur Strategie herstellen — auch ein offener Zielkonflikt zählt, nur Schweigen dazu nicht?
 
-Wenn etwas nicht stimmt — nicht von vorne anfangen. Stattdessen:
+Fehlt auch nur einer dieser Punkte oder bleibt er zu vage, geht die Anfrage mit konkreten Hinweisen zurück. Sind alle fünf beantwortet, gilt sie als aufgenommen.
 
-> "In der Scorecard bei Cluster 3 fehlt der Bezug zu unserem Team-Constraint. Ergänze das."
+**Aufgabe 1 — eine einzelne Anfrage:** Im Ordner `input/roadmap-requests/` liegen drei Beispiel-Anfragen. Nimm dir eine davon vor, zum Beispiel die knappste:
 
-Claude überarbeitet genau das. Du liest nochmal. Passt es jetzt? Dann weiter.
+```
+/roadmap-intake input/roadmap-requests/01-vertrieb-chatbot.md
+```
 
-**Dieses Iterationsprinzip ist keine Schwäche des Systems — es ist das Design.** Der Mensch behält das Urteil. Claude macht die Arbeit. Die Übergabe passiert bewusst, nicht automatisch.
+Lies das Verdikt. Zurückgewiesen? Dann schau dir an, welche der fünf Dimensionen konkret fehlt.
 
-Das gilt auch für Übergaben zwischen Skills: wenn `/decision-brief` etwas produziert das nicht stimmt, korrigierst du es bevor du `/spec-writer` aufrufst. Fehler pflanzen sich fort. Je früher du eingreifst, desto kleiner die Korrektur.
+**Aufgabe 2 — alle auf einmal:** Für die Montags-Runde reicht ein einziger Aufruf, der alle Dateien im Ordner nacheinander prüft:
 
-**Die Faustregel:** Fixe immer so früh wie möglich in der Kette.
-Brief → Spec → Eval → Code. Ein Fehler im Brief kostet zehnmal so viel wenn er erst im Code auftaucht.
+```
+/roadmap-intake Prüfe alle Anfragen in input/roadmap-requests/ nacheinander, jede mit eigenem Verdikt.
+```
 
-**Reflexion:** Wann hast du zuletzt einen AI-Output unkritisch übernommen? Was wäre passiert wenn du ihn gründlicher gelesen hättest?
+Vergleiche die drei Verdikte. Welche Anfrage kam mit welchen Nachschärfungs-Hinweisen zurück, welche wurde aufgenommen — und war das Ergebnis für dich nachvollziehbar?
+
+**Optional — einen Schritt weiter:** `/product-roadmap` sequenziert aufgenommene Ideen in Now, Next und Later — eine Datei unter `output/roadmap/roadmap.md`, die mit jedem Lauf weiterwächst statt neu geschrieben zu werden. Der Skill sortiert dabei nur, er bewertet nicht selbst: Was aufgenommen, aber noch nicht mit `/opportunity-scorer` bewertet ist, landet zunächst unter "Ungeklärt", bis eine Bewertung vorliegt. Du kannst `/product-roadmap` jetzt probehalber laufen lassen und dir ansehen, wo deine gerade aufgenommenen Anfragen landen.
+
+Ein Bild zu diesem Flow liegt unter `doc/flows/flow2-roadmap-intake.png`.
+
+**Reflexion:** Diese fünf Prüfpunkte sind fest und offen einsehbar. Würdest du sie an Stakeholder in deinem Umfeld weitergeben, bevor sie dir überhaupt eine Anfrage schicken — und was würde sich dadurch bei den Anfragen ändern, die bei dir landen?
 
 Sag "weiter" für Schritt 6.
 
 ---
 
-## Schritt 6: Kontext ist alles — context/ anpassen
+## Schritt 6 ↔ Lektion 06: Flow 3: Persona als Linse — ein Discovery-Ergebnis schärft die Strategie
 
-Das Stärkste am System ist nicht die Skill-Sammlung. Es ist der gemeinsame Kontext.
+Dieser Flow zeigt etwas anderes als die vorherigen: Ein Ergebnis, das eigentlich für einen ganz anderen Bereich gebaut wurde, wird zur Linse, durch die ein zweiter Skill blickt — obwohl dieser zweite Skill in seiner eigenen Anleitung nichts davon weiß.
 
-**Wie du den Kontext befüllst:**
-
-Öffne `context/company.md`. Du siehst einen Template-Abschnitt `## Dein Kontext`. Ersetze den Platzhalter mit echten Informationen — so viel oder wenig wie du willst, aber spezifisch genug dass Claude daraus etwas ableiten kann.
-
-Nicht: *"Wir sind ein innovatives Tech-Unternehmen."*
-Sondern: *"Wir haben 12 Personen. Engineering: 4. Wir deployen wöchentlich. Unser größter Constraint ist Bandbreite, nicht Budget."*
-
-**Was wenn der Standard-Kontext nicht reicht?**
-
-Du kannst eigene Context-Files hinzufügen. Beispiele:
-- `context/competitors.md` — Wettbewerbslandschaft
-- `context/customers.md` — Kundensegmente und ihre Jobs-to-be-done
-- `context/tech-stack.md` — Was gebaut werden kann und was nicht
-
-Damit Claude diese Files liest, ergänzt du die Kontext-Regel in `CLAUDE.md`:
+**1. Ausgangspunkt.** Wenn du noch im selben Tages-Ordner arbeitest wie in Schritt 4, kannst du die vorhandenen Feedback-Cluster weiterverwenden. Sonst neu erzeugen:
 
 ```
-- context/competitors.md — bei Discovery und Strategy
-- context/customers.md — immer
+/feedback-synthesizer input/raw_feedback/
 ```
 
-Einfach eine Zeile hinzufügen. Claude liest es beim nächsten Skill-Aufruf.
+**2. Personas verdichten.**
 
-**Reflexion:** Welche Information fehlt in den Standard-Context-Files die für euch besonders relevant wäre? Habt ihr etwas das die meisten PM-Teams nicht haben — und das in den Kontext sollte?
-
-> **Tipp:** Notier dir deine Antwort — am Ende des Kurses bauen wir daraus zusammen einen konkreten Plan.
-
-Sag "weiter" für Schritt 7.
-
----
-
-## Schritt 7: Lokal erweitern — Input automatisieren, Output weiterleiten
-
-Das System läuft lokal. Das heißt: du entscheidest wo Input herkommt und wo Output landet.
-
-**Input automatisieren — Beispiele mit MCPs:**
-
-Wenn du Slack-Nachrichten direkt ins System ziehen willst:
 ```
-/slack-importer  →  liest input/slack-export/  →  output/YYYY-MM-DD/discovery/slack-feedback.md
+/user-personas
 ```
 
-Mit dem Slack-MCP kannst du den Export-Schritt überspringen — Nachrichten landen direkt in `input/`. Gleiches gilt für Notion-Seiten, Linear-Tickets, E-Mail-Postfächer.
+Ergebnis: `output/YYYY-MM-DD/discovery/personas.md`. Entscheidend an diesem Skill ist nicht die fertige Persona, sondern die Disziplin dahinter: Jede Aussage ist entweder mit einer Quelle belegt oder ausdrücklich als Annahme markiert — keine dritte, unmarkierte Kategorie. Falls eigene Interviews fehlen, zeigt `output/discovery/personas-beispiel.md`, wie derselbe Skill auch mit Schreibtisch- und Web-Recherche arbeitet (Modus B, ehrlich niedrigere Konfidenz als bei eigenen Gesprächen).
 
-Das ist die Integration die jeden Flow kürzer macht: **nicht mehr kopieren, sondern verbinden.**
+**3. Ganz regulär bewerten, ohne Linse.**
 
-**Output weiterleiten — Beispiele:**
+```
+/opportunity-scorer
+```
 
-Der Handoff landet in `output/YYYY-MM-DD/handoff/handoff.md`. Du könntest ihn:
-- Als Notion-Seite exportieren (Notion-MCP)
-- Als Linear-Dokument anlegen (Linear-MCP)
-- Als E-Mail-Entwurf vorbereiten (Gmail-MCP)
+Ergebnis: `output/YYYY-MM-DD/strategy/opportunity-scorecard.md`.
 
-**Aber:** Mach das nicht als erstes. Mach es wenn du dem Flow vertraust.
+**4. Mit Linse noch einmal bewerten.** Der Opportunity Scorer weiß in seiner eigenen Anleitung nichts von Personas — er ist dafür gebaut, Cluster gegen die Firmenstrategie zu spiegeln, mehr nicht. Nichts hindert dich daran, ihm zusätzlichen Kontext mitzugeben, mit genau diesem Prompt:
 
-**Reflexion:** Welche Datenquelle würdest du als erstes anbinden? Wo verlierst du heute am meisten Zeit mit Copy-Paste?
+```
+/opportunity-scorer Lies diesmal zusätzlich
+output/YYYY-MM-DD/discovery/personas.md. Gewichte jeden Cluster danach,
+welche der Personas er bedient und wie stark — und lass das sichtbar in
+Begründung und Fazit einfließen, nicht nur in die drei Standard-Dimensionen.
+Speichere das Ergebnis als opportunity-scorecard-mit-linse.md, damit die
+erste Scorecard erhalten bleibt.
+```
 
-> **Tipp:** Notier dir deine Antwort — am Ende des Kurses bauen wir daraus zusammen einen konkreten Plan.
+**5. Vergleichen.** Öffne beide Scorecards nebeneinander — `opportunity-scorecard.md` und `opportunity-scorecard-mit-linse.md`. Bleibt die Reihenfolge der Cluster gleich? Wo wird die Begründung konkreter, wo verschiebt sich sogar die Punktzahl, und warum?
 
-Sag "weiter" für Schritt 8.
+Ein Bild zu diesem Flow liegt unter `doc/flows/flow3-persona-linse.png`.
 
----
+**Reflexion:** Für welchen deiner eigenen Skills oder Entscheidungen wäre eine Persona als Linse hilfreich — nicht um sie neu zu erfinden, sondern um eine bestehende Bewertung genauer zu machen?
 
-## Schritt 8: Manuell → Übergabe → Automatisch
-
-Das ist die Reife-Kurve die für jede Integration gilt:
-
-**Stufe 1 — Manuell**
-Du rufst jeden Skill selbst auf. Du liest jeden Output. Du entscheidest was weitergeht. Kein Schritt ohne dein Urteil.
-
-*Wann:* Immer am Anfang. Auch wenn du das System schon kennst — bei einem neuen Flow, einem neuen Kontext, einem neuen Team.
-
-**Stufe 2 — Mit Übergabe**
-Du automatisierst Teile des Flows, aber baust bewusste Haltepunkte ein. Beispiel:
-
-> `/feedback-synthesizer` läuft automatisch über Nacht.
-> Morgens liest du die Cluster.
-> Erst wenn du sagst "weiter" läuft `/opportunity-scorer`.
-
-Das 4-Augen-Prinzip als Design-Entscheidung: nicht weil du dem System nicht vertraust, sondern weil du die Kontrolle behalten willst ohne alles selbst zu machen.
-
-**Stufe 3 — Automatisch**
-Der gesamte Flow läuft. Output landet wo er soll. Du greifst nur ein wenn etwas auffällt.
-
-*Wann:* Wenn du den Flow kennst. Wenn der Kontext stabil ist. Wenn die Outputs konsistent gut genug sind.
-
-**Wichtig:** Stufe 3 bedeutet nicht "kein Mensch mehr". Es bedeutet: der Mensch entscheidet wo er eingreift — bewusst, nicht reaktiv.
-
-**Und: Zielformulierung zuerst.** Bevor du automatisierst, frage: für wen ist dieser Output? Ein Handoff für Dev sieht anders aus als ein Summary für dein Management, anders als ein Briefing für dich selbst. Das System kann unterschiedliche Formate für unterschiedliche Audiences erzeugen — aber du musst es ihm sagen.
-
-**Reflexion:** Welcher Flow in deinem Alltag würde von Stufe 2 profitieren — automatisch laufen, aber mit einem bewussten Haltepunkt bevor er weitergeht?
-
-Sag "weiter" für Schritt 9.
+Sag "weiter" für den Abschluss.
 
 ---
 
-## Schritt 9: Skills klauen und anpassen
+## Abschluss
 
-Das System ist open-ended. Die interessanteste Erweiterung kommt nicht von dir allein — sondern von der Community.
+Damit hast du die sechs Lektionen dieser Woche live durchgespielt: die Struktur des Systems, den Überblick über die sieben Bereiche, die Grundmuster zur Kombination von Skills, und drei konkrete Flows — den vollständigen Grund-Flow, einen Skill solo als Türsteher, und ein Ergebnis als Linse für einen anderen Skill.
 
-**Wo du Skills findest:**
+Im Lauf der Woche kommen weitere Flows dazu — sie werden hier als weitere Schritte ergänzt, sobald die passende Circle-Lektion live ist, immer mit derselben Regel: Schritt N im Kurs entspricht Lektion N in Circle.
 
-- **Pawel Huryn** — github.com/phuryn/pm-skills — PM-Prozesse, Roadmaps, Stakeholder-Management
-- **Aakash Gupta** (aakashg.com) — Growth, Metrics, Feature-Priorisierung
-- **Hannah Stulberg** — github.com/in-the-weeds-hannah-stulberg/team-os-example-repo — Team OS, Betrieb, Zusammenarbeit
-- **GitHub Copilot Community** — github.com/features/copilot, GitHub Community Discussions
-
-**Wie du einen fremden Skill integrierst:**
-
-1. Skill lesen — vollständig. Was macht er? Was setzt er voraus?
-2. Kontext prüfen — braucht er Informationen die du nicht hast?
-3. Pfade anpassen — Input und Output auf `output/YYYY-MM-DD/` umbiegen
-4. Context-Regel prüfen — welche `context/`-Files muss er lesen?
-5. Testen — einmal manuell laufen lassen, Output beurteilen
-
-**Eigene Skills entwickeln — über scripts/:**
-
-Wenn du selbst etwas Neues entwickeln willst, fang in `scripts/` an. Das ist deine persönliche Sandbox — kein Format-Zwang, keine Reviews. Wenn es gut genug ist:
-
-1. Als `SKILL.md` verpacken → nach `.claude/skills/[name]/SKILL.md`
-2. Branch erstellen, PR aufmachen
-3. Kollegen reviewen, Merge ins Team-Repo
-
-`scripts/` ist dein Zimmer. `.claude/skills/` ist das Wohnzimmer. Der Übergang läuft bewusst über Git.
-
-**Niemals:** Einen fremden Skill blind übernehmen und in einen automatisierten Flow einbauen. Erst verstehen, dann vertrauen, dann automatisieren.
-
-**Reflexion:** Welchen PM-Prozess in deinem Alltag würdest du gerne als Skill formulieren? Was würde er lesen, was würde er schreiben?
-
-> **Tipp:** Notier dir deine Antwort — am Ende des Kurses bauen wir daraus zusammen einen konkreten Plan.
-
-Sag "weiter" für Schritt 10.
-
----
-
-## Schritt 10: Persönlicher Assistent vs. Team-Interface
-
-Das ist der konzeptuell wichtigste Schritt dieses Kurses.
-
-**Zwei fundamental verschiedene Nutzungsweisen:**
-
-**Persönlicher Assistent**
-Du arbeitest allein. Das System kennt deinen Kontext, deine Denkweise, deine Sprache. Die Outputs sind für dich — du entscheidest was du damit machst. Kein anderer sieht den Prozess, nur das Ergebnis.
-
-Skills für diesen Modus: `/decision-brief`, `/devils-advocate`, `/business-case-debater`. Alles was dir hilft, schärfer zu denken.
-
-**Team-Interface**
-Das System produziert Artefakte die andere lesen. Specs die Dev bekommt. Handoffs die ins Ticket-System gehen. Scorecards die im Review-Meeting stehen.
-
-Hier gelten andere Anforderungen: Nachvollziehbarkeit, Konsistenz, Formatierung für Nicht-Nutzer.
-
-Skills für diesen Modus: `/spec-writer`, `/handoff-packager`, `/eval-writer`. Alles was eine Übergabe vorbereitet.
-
-**Warum die Trennung wichtig ist:**
-
-Ein Kollege der deine Spec liest, will nicht wissen wie sie entstanden ist. Er will wissen: was wird gebaut, wann ist es fertig, was ist außerhalb des Scope.
-
-Ein Stakeholder der deinen Decision Brief bekommt, will nicht wissen dass Claude ihn mitgeschrieben hat. Er will wissen: was empfehlt ihr, warum.
-
-Das System produziert beides — aber du musst wissen welchen Modus du gerade brauchst, und den Output entsprechend behandeln.
-
-**Reflexion:** Was von dem was du heute mit Claude machst ist "persönlicher Assistent"? Was wäre "Team-Interface"? Wo ist die Grenze in deinem konkreten Alltag?
-
-Sag "weiter" für Schritt 11.
-
----
-
-## Schritt 11: Was dieses System nicht ist
-
-Drei Grenzen die wichtig sind um offen zu benennen:
-
-**1. Kein Entscheidungsersatz**
-Das System hilft dir, schneller zu einer besseren Entscheidungsgrundlage zu kommen. Die Entscheidung selbst — ob ihr etwas baut, ob ihr eine Opportunity verfolgt, ob ihr einen Kurs korrigiert — die triffst du. Niemand anderes.
-
-Ein `/decision-brief` sagt "BUILD". Das heißt nicht: ihr baut es. Es heißt: die Daten unterstützen diese Richtung. Du weißt was die Daten nicht wissen.
-
-**2. Kein Todo-System**
-Das System verwaltet keine Aufgaben, keine Deadlines, keine Zuständigkeiten. Es produziert Artefakte — Dokumente, Analysen, Prototypen. Was du damit machst, wie du es priorisierst, wer es umsetzt: das ist dein Prozess.
-
-Der Unterschied ist wichtig weil viele PM-Tools versuchen beides zu sein. Der pm-workspace ist bewusst nur das erste — damit er das gut macht.
-
-**3. Kein statisches Tool**
-Das System ist ein Ausgangspunkt. In sechs Monaten werden andere Skills da sein. Andere Kontexte. Andere Flows. Was heute gut funktioniert, wirst du anpassen. Was heute fehlt, wirst du hinzufügen.
-
-Das ist kein Fehler — das ist das Design. Ein System das du nicht ändern kannst, kannst du nicht besitzen.
-
-**Reflexion:** Welche Erwartung hattest du vor diesem Kurs die dieser Abschnitt korrigiert? Was ist die ehrlichste Einschränkung die du jemandem in deinem Team nennen würdest der das System nutzen soll?
-
-Sag "weiter" für Schritt 12.
-
----
-
-## Schritt 12: Nächste Schritte
-
-Du hast jetzt ein vollständiges Bild: Struktur, Flows, Anpassung, Erweiterung, Grenzen.
-
-**Wenn du heute anfangen willst:**
-
-1. `context/` befüllen — fang mit `company.md` und `strategy.md` an
-2. `/system-auditor` aufrufen — er zeigt dir was noch fehlt
-3. Einen Flow wählen der heute relevant ist — und ihn manuell einmal durchlaufen
-4. Den Output beurteilen — und einmal korrigieren lassen
-
-**Wenn du das System mit deinem Team nutzen willst:**
-
-Dafür gibt es einen eigenen Kurs: Grundsätze der Zusammenarbeit mit einem geteilten System — wie führe ich Kollegen ein, wie teilen wir einen Workspace, was sind die Spielregeln wenn mehrere Menschen mit demselben System arbeiten.
-
-**Wenn du experimentieren willst — jetzt:**
-
-Das System läuft live. Du kannst jeden Skill direkt aufrufen:
-- `/system-auditor` — Workspace-Audit
-- `/feedback-synthesizer input/raw_feedback/` — falls Testdaten vorhanden
-- `/business-case-debater` — nach Befüllen von `input.yaml`
-
-Kein Setup nötig. Kein Durchlauf 2 der auf dich wartet. Einfach ausprobieren.
-
----
-
-**Kurs abgeschlossen. Jetzt: dein System aufbauen.**
-
-Du weißt wie es aufgebaut ist. Du weißt wo die Hebel sind.
-
-Wenn du dir während des Kurses Notizen gemacht hast — jetzt ist der Moment. Sag Claude:
-
-> "Ich habe den System-Kurs durchgearbeitet. Hier sind meine Notizen: [deine Notizen]. Hilf mir einen konkreten Plan zu erstellen: welche Context-Files befülle ich zuerst, welchen Flow starte ich, welche Skills passe ich an, was baue ich neu?"
-
-Claude arbeitet dann mit dir durch: was du schon hast, was du als erstes einrichten solltest, welcher Flow für deine aktuelle Arbeit am sinnvollsten ist.
-
-**Danach:** Wenn du das System auch mit deinem Team nutzen willst, gibt es einen eigenen Kurs: `/zeig_mir_teamwork`.
-
-**Für den Überblick:** Die Präsentation `doc/PM-System-Übersicht.html` zeigt alles nochmal komprimiert — Struktur, Flows, alle Skills, Erweiterungs-Optionen. Nützlich für Gespräche mit Kollegen oder als Referenz beim Erkunden.
-
----
-
-## Zusatzmaterial
-
-- `doc/PM-System-Übersicht.html` — Präsentation: Struktur, Flows, alle Skills im Überblick
-- `README.md` — Übersicht aller Skills und Flows
-- `.claude/skills/[name]/README.md` — Kurzreferenz pro Skill
-- `.claude/skills/[name]/SKILL.md` — Vollständige Instruktionen (für wenn du anpassen willst)
-- `/zeig_mir_teamwork` — Wie das System im Team funktioniert
+Falls du beim Durchspielen eine eigene Idee für einen Flow hattest — eine Kombination von Skills, die zu deiner konkreten Arbeit passt, oder eine Stelle, an der dein Kontext noch fehlt — notier sie dir jetzt. Sobald du bereit bist, kannst du sie direkt mit Copilot besprechen und ausprobieren, ganz ohne Kurs.

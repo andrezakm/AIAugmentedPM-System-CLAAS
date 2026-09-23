@@ -67,23 +67,29 @@
   <p class="fragment dim">Du erklärt deinem Unternehmen jeden Tag neu wer ihr seid.</p>
 </section>
 
-<!-- 3: Die Idee -->
+<!-- 3: Der goldene Dreiklang -->
 <section>
-  <h2>Die Idee</h2>
+  <h2>Der goldene Dreiklang — dauerhaft eingebaut</h2>
   <div class="spacer"></div>
-  <div class="row">
+  <p class="fragment dim">Nicht mehr Automatisierung — derselbe Dreiklang wie in Woche 1, jetzt fest im System.</p>
+  <div class="spacer"></div>
+  <div class="row fragment">
+    <span style="min-width: 7em; display:inline-block; text-align:right; color:#ccc;">Ergebnis</span>
+    <span class="arrow">→</span>
+    <div class="box box-pass">output/</div>
+  </div>
+  <div class="row fragment">
+    <span style="min-width: 7em; display:inline-block; text-align:right; color:#ccc;">Kontext</span>
+    <span class="arrow">→</span>
     <div class="box">context/</div>
     <span class="arrow">+</span>
     <div class="box">input/</div>
+  </div>
+  <div class="row fragment">
+    <span style="min-width: 7em; display:inline-block; text-align:right; color:#ccc;">Unterschritte</span>
     <span class="arrow">→</span>
     <div class="box highlight">Skills</div>
-    <span class="arrow">→</span>
-    <div class="box box-pass">output/YYYY-MM-DD/</div>
   </div>
-  <div class="spacer"></div>
-  <p class="fragment">Kontext einmal befüllen.</p>
-  <p class="fragment">Alle Skills lesen ihn automatisch.</p>
-  <p class="fragment">Jeder Run bekommt ein eigenes Verzeichnis.</p>
 </section>
 
 <!-- 4: Anatomie -->
@@ -95,18 +101,30 @@
     ├── <span class="c">context/</span> &nbsp;&nbsp;&nbsp;&nbsp;← Das Hirn<br>
     │ &nbsp;&nbsp;├── company.md<br>
     │ &nbsp;&nbsp;├── strategy.md<br>
-    │ &nbsp;&nbsp;└── product.md &nbsp;<span style="color:#555">+ team / metrics / roadmap</span><br>
+    │ &nbsp;&nbsp;└── product.md &nbsp;<span style="color:#555">+ team / metrics / roadmap / learnings</span><br>
     ├── <span class="c">input/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Rohdaten rein<br>
     │ &nbsp;&nbsp;├── raw_feedback/<br>
     │ &nbsp;&nbsp;└── case/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Briefs &amp; Datendateien<br>
     ├── <span class="c">output/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Artefakte raus<br>
     │ &nbsp;&nbsp;└── YYYY-MM-DD/ &nbsp;Ein Run, ein Ordner<br>
     ├── <span class="c">scripts/</span> &nbsp;&nbsp;&nbsp;&nbsp;← Persönliche Sandbox<br>
-    └── <span class="c">.claude/skills/</span> &nbsp;Die Skills<br>
+    └── <span class="c">skills/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Die Skills (versteckter Ordner)<br>
   </div>
 </section>
 
-<!-- 5: Die 7 Bereiche -->
+<!-- 5: Vereinheitlichung -->
+<section>
+  <h2>Vereinheitlichung</h2>
+  <div class="spacer"></div>
+  <p class="fragment">Jeder Skill: eine <span class="highlight">SKILL.md</span> + ein kurzes README.</p>
+  <p class="fragment">Dieselbe Kontext-Regel für alle.</p>
+  <p class="fragment">Dieselbe Output-Konvention für alle.</p>
+  <p class="fragment">Alles <span class="highlight">Markdown</span>. Alles in einem Repo.</p>
+  <div class="spacer"></div>
+  <p class="fragment dim">Der Output des einen Skills wird automatisch lesbarer Input für den nächsten.</p>
+</section>
+
+<!-- 6: Die 7 Bereiche -->
 <section>
   <h2>7 Bereiche — konzeptuell</h2>
   <div class="spacer-sm"></div>
@@ -122,9 +140,9 @@
   </table>
 </section>
 
-<!-- 6: Die Skills -->
+<!-- 7: Die Skills -->
 <section>
-  <h2>Die Skills — flach unter .claude/</h2>
+  <h2>Die Skills — flach im versteckten Skill-Ordner</h2>
   <div class="spacer-sm"></div>
   <div style="font-size: 0.62em; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3em 2em; text-align: left; max-width: 800px; margin: 0 auto;">
     <div><span class="highlight">/feedback-synthesizer</span><br><span class="dim">Feedback → Cluster</span></div>
@@ -147,199 +165,61 @@
     <div><span class="highlight">/product-roadmap</span><br><span class="dim">Ideen → Now/Next/Later</span></div>
     <div><span class="highlight">/story-map</span><br><span class="dim">Spec → Story-Map</span></div>
   </div>
-  <p class="dim" style="font-size:0.5em; margin-top:0.6em;">Visuelle Übersicht aller Bereiche und Skills: doc/System-Karte.html</p>
+  <p class="dim" style="font-size:0.5em; margin-top:0.6em;">Inhaltsverzeichnis doppelt: als Text unter skills/ · visuell unter doc/System-Karte.html</p>
 </section>
 
-<!-- 7: Flow 1 -->
+<!-- 8: Zwei Output-Konventionen -->
 <section>
-  <h2>Flow 1: Discovery → Entscheidung</h2>
+  <h2>Zwei Output-Konventionen</h2>
   <div class="spacer"></div>
-  <p class="dim">Rohes Feedback liegt vor. Du willst wissen: was steckt drin?</p>
+  <p><span class="highlight">Lauf-Artefakte</span></p>
+  <p class="dim">Spec, Scorecard, Prototyp <span class="arrow">→</span> <span class="box box-pass">output/YYYY-MM-DD/</span></p>
+  <p class="fragment dim">Ein Lauf, ein Ordner. Nichts wird überschrieben.</p>
   <div class="spacer"></div>
-  <div class="row">
-    <div class="box">/feedback-synthesizer</div>
-    <span class="arrow">→</span>
-    <div class="box">/opportunity-scorer</div>
-    <span class="arrow">→</span>
-    <div class="box">/decision-brief</div>
-    <span class="arrow">→</span>
-    <div class="box">/devils-advocate</div>
-  </div>
-  <div class="spacer"></div>
-  <p class="dim fragment">Output: Decision Brief mit BUILD / SKIP / MEHR DATEN</p>
+  <p class="fragment"><span class="highlight">Lebender Zustand</span></p>
+  <p class="fragment dim">Roadmap <span class="arrow">→</span> <span class="box">output/roadmap/</span> &nbsp;&nbsp; System-Audit <span class="arrow">→</span> <span class="box">output/meta/</span></p>
+  <p class="fragment dim">Wächst mit jedem Lauf. Wird nicht neu angelegt.</p>
 </section>
 
-<!-- 8: Flow 2 -->
+<!-- 9: Was damit möglich ist -->
 <section>
-  <h2>Flow 2: Entscheidung → Dev-Ready</h2>
-  <div class="spacer"></div>
-  <p class="dim">Du weißt was gebaut werden soll. Du brauchst Spec, Prototyp, Handoff.</p>
-  <div class="spacer"></div>
-  <div class="row">
-    <div class="box">/spec-writer</div>
-    <span class="arrow">→</span>
-    <div class="box">/option-stormer</div>
-    <span class="arrow">→</span>
-    <div class="box">/eval-runner</div>
-    <span class="arrow">→</span>
-    <div class="box">/handoff-packager</div>
-  </div>
-  <div class="spacer"></div>
-  <p class="dim fragment">Output: Handoff mit Spec, Eval-Ergebnissen, Prototyp-Empfehlung</p>
-</section>
-
-<!-- 9: Output-Qualität -->
-<section>
-  <h2>Output-Qualität — die Grundregel</h2>
-  <div class="spacer"></div>
-  <p class="fragment">Jeden Output lesen.</p>
-  <p class="fragment">Wenn etwas nicht stimmt — <span class="highlight">nicht von vorne anfangen.</span></p>
-  <div class="spacer"></div>
-  <blockquote class="fragment">"In der Scorecard bei Cluster 3 fehlt der Bezug zu unserem Team-Constraint. Ergänze das."</blockquote>
-  <div class="spacer"></div>
-  <p class="fragment dim">Fixe immer so früh wie möglich in der Kette:</p>
-  <p class="fragment"><span class="box-dim box">Brief</span> → <span class="box-dim box">Spec</span> → <span class="box-dim box">Eval</span> → <span class="box-warn box">Code</span></p>
-</section>
-
-<!-- 10: Kontext anpassen -->
-<section>
-  <h2>Kontext anpassen</h2>
-  <div class="spacer"></div>
-  <p>Standard: 7 Context-Files. Reicht nicht?</p>
+  <h2>Was damit möglich ist</h2>
   <div class="spacer-sm"></div>
-  <p class="fragment">Eigene Files hinzufügen:</p>
-  <p class="fragment dim">context/competitors.md — context/customers.md — context/tech-stack.md</p>
-  <div class="spacer"></div>
-  <p class="fragment">CLAUDE.md ergänzen:</p>
-  <blockquote class="fragment">- context/customers.md — immer<br>- context/competitors.md — bei Discovery und Strategy</blockquote>
+  <img src="flows/muster-kombinationen.png" alt="Muster-Kombinationen" style="max-height: 540px; max-width: 480px; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+</section>
+
+<!-- 10: Flow 1: Der Grund-Flow -->
+<section>
+  <h2>Flow 1: Der Grund-Flow — vom Rohfeedback zur Übergabe</h2>
   <div class="spacer-sm"></div>
-  <p class="fragment dim">Eine Zeile. Der Agent liest es beim nächsten Aufruf.</p>
+  <img src="flows/flow1-grund.png" alt="Flow 1: Der Grund-Flow" style="max-height: 520px; max-width: 460px; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
 </section>
 
-<!-- 11: MCP / Automatisierung -->
+<!-- 11: Flow 2: Ein Skill solo -->
 <section>
-  <h2>Lokal erweitern</h2>
-  <div class="spacer"></div>
-  <p><span class="highlight">Input</span> — MCPs anbinden statt kopieren</p>
-  <p class="dim fragment">Slack → input/ &nbsp;|&nbsp; Notion → input/ &nbsp;|&nbsp; Linear → input/</p>
-  <div class="spacer"></div>
-  <p><span class="highlight">Output</span> — Artefakte weiterleiten</p>
-  <p class="dim fragment">handoff.md → Notion-Seite &nbsp;|&nbsp; → Linear-Dokument &nbsp;|&nbsp; → E-Mail-Entwurf</p>
-  <div class="spacer"></div>
-  <p class="fragment warn">Erst wenn du dem Flow vertraust.</p>
-</section>
-
-<!-- 12: Reife-Kurve -->
-<section>
-  <h2>Manuell → Übergabe → Automatisch</h2>
-  <div class="spacer"></div>
-  <div class="row">
-    <div class="stufe stufe-1">
-      <p style="color:#888; font-size:0.7em; margin:0">Stufe 1</p>
-      <p style="margin:0.2em 0"><strong>Manuell</strong></p>
-      <p class="dim" style="font-size:0.6em">Du rufst jeden Skill<br>selbst auf</p>
-    </div>
-    <span class="arrow">→</span>
-    <div class="stufe stufe-2">
-      <p style="color:#4fc3f7; font-size:0.7em; margin:0">Stufe 2</p>
-      <p style="margin:0.2em 0"><strong>Mit Übergabe</strong></p>
-      <p class="dim" style="font-size:0.6em">Automatisch laufen,<br>bewusst freigeben</p>
-    </div>
-    <span class="arrow">→</span>
-    <div class="stufe stufe-3">
-      <p style="color:#81c784; font-size:0.7em; margin:0">Stufe 3</p>
-      <p style="margin:0.2em 0"><strong>Automatisch</strong></p>
-      <p class="dim" style="font-size:0.6em">Flow läuft,<br>du greifst ein wenn nötig</p>
-    </div>
-  </div>
-  <div class="spacer"></div>
-  <p class="fragment dim">Stufe 3 ≠ kein Mensch. Der Mensch entscheidet <em>wo</em> er eingreift.</p>
-</section>
-
-<!-- 13: Persönlich vs. Team -->
-<section>
-  <h2>Persönlicher Assistent vs. Team-Interface</h2>
-  <div class="spacer"></div>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; font-size: 0.75em;">
-    <div style="border: 1px solid #555; border-radius: 8px; padding: 0.8em;">
-      <p style="color: #4fc3f7; margin: 0 0 0.4em 0"><strong>Persönlicher Assistent</strong></p>
-      <p style="color: #aaa; margin: 0.2em 0">Du arbeitest allein</p>
-      <p style="color: #aaa; margin: 0.2em 0">Output ist für dich</p>
-      <p style="color: #aaa; margin: 0.2em 0">Kein anderer sieht den Prozess</p>
-      <p style="color: #666; margin: 0.5em 0 0 0; font-size: 0.85em">/decision-brief · /devils-advocate<br>/business-case-debater</p>
-    </div>
-    <div style="border: 1px solid #555; border-radius: 8px; padding: 0.8em;">
-      <p style="color: #81c784; margin: 0 0 0.4em 0"><strong>Team-Interface</strong></p>
-      <p style="color: #aaa; margin: 0.2em 0">Output lesen andere</p>
-      <p style="color: #aaa; margin: 0.2em 0">Nachvollziehbarkeit zählt</p>
-      <p style="color: #aaa; margin: 0.2em 0">Format für Nicht-Nutzer</p>
-      <p style="color: #666; margin: 0.5em 0 0 0; font-size: 0.85em">/spec-writer · /handoff-packager<br>/eval-writer</p>
-    </div>
-  </div>
-</section>
-
-<!-- 14: Skills entwickeln -->
-<section>
-  <h2>Eigene Skills entwickeln</h2>
-  <div class="spacer"></div>
-  <div class="row">
-    <div class="stufe stufe-1">
-      <p style="color:#888; font-size:0.7em; margin:0">Schritt 1</p>
-      <p style="margin:0.2em 0"><strong>scripts/</strong></p>
-      <p class="dim" style="font-size:0.6em">Sandbox.<br>Kein Format-Zwang.</p>
-    </div>
-    <span class="arrow">→</span>
-    <div class="stufe stufe-2">
-      <p style="color:#4fc3f7; font-size:0.7em; margin:0">Schritt 2</p>
-      <p style="margin:0.2em 0"><strong>SKILL.md</strong></p>
-      <p class="dim" style="font-size:0.6em">Verpacken als Skill<br>in .claude/skills/</p>
-    </div>
-    <span class="arrow">→</span>
-    <div class="stufe stufe-3">
-      <p style="color:#81c784; font-size:0.7em; margin:0">Schritt 3</p>
-      <p style="margin:0.2em 0"><strong>PR → Merge</strong></p>
-      <p class="dim" style="font-size:0.6em">Review durch Team,<br>dann für alle.</p>
-    </div>
-  </div>
-  <div class="spacer"></div>
-  <p class="fragment dim">scripts/ ist dein Zimmer. .claude/skills/ ist das Wohnzimmer.</p>
-</section>
-
-<!-- 15: Skills aus Community -->
-<section>
-  <h2>Skills aus der Community</h2>
-  <div class="spacer"></div>
-  <ul>
-    <li><span class="highlight">Pawel Huryn</span> — github.com/phuryn/pm-skills</li>
-    <li><span class="highlight">Aakash Gupta</span> — aakashg.com</li>
-    <li><span class="highlight">Hannah Stulberg</span> — github.com/in-the-weeds-hannah-stulberg/team-os-example-repo</li>
-  </ul>
-  <div class="spacer"></div>
-  <p class="fragment warn">Niemals blind übernehmen.</p>
-  <p class="fragment dim">Lesen → Kontext prüfen → Pfade anpassen → in scripts/ testen → SKILL.md → PR</p>
-</section>
-
-<!-- 15: Was es nicht ist -->
-<section>
-  <h2>Was dieses System nicht ist</h2>
-  <div class="spacer"></div>
-  <p class="fragment"><span class="warn">Kein Entscheidungsersatz</span><br><span class="dim">BUILD heißt: die Daten stützen diese Richtung. Du weißt was die Daten nicht wissen.</span></p>
+  <h2>Flow 2: Ein Skill solo — der Türsteher vor dem PM</h2>
   <div class="spacer-sm"></div>
-  <p class="fragment"><span class="warn">Kein Todo-System</span><br><span class="dim">Es produziert Artefakte — keine Deadlines, keine Zuständigkeiten.</span></p>
-  <div class="spacer-sm"></div>
-  <p class="fragment"><span class="warn">Kein statisches Tool</span><br><span class="dim">Ein System das du nicht ändern kannst, kannst du nicht besitzen.</span></p>
+  <img src="flows/flow2-roadmap-intake.png" alt="Flow 2: Ein Skill solo" style="max-height: 540px; max-width: 480px; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
 </section>
 
-<!-- 16: Starten -->
+<!-- 12: Flow 3: Persona als Linse -->
 <section>
-  <h2>Heute anfangen</h2>
+  <h2>Flow 3: Persona als Linse — ein Discovery-Ergebnis schärft die Strategie</h2>
+  <div class="spacer-sm"></div>
+  <img src="flows/flow3-persona-linse.png" alt="Flow 3: Persona als Linse" style="max-height: 540px; max-width: 480px; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+</section>
+
+<!-- 13: Abschluss -->
+<section>
+  <h2>Abschluss</h2>
   <div class="spacer"></div>
-  <p class="fragment">1. <code>context/</code> befüllen — company.md + strategy.md</p>
-  <p class="fragment">2. <code>/system-auditor</code> — zeigt was noch fehlt</p>
-  <p class="fragment">3. Einen Flow wählen — manuell einmal durchlaufen</p>
-  <p class="fragment">4. Output beurteilen — einmal korrigieren lassen</p>
+  <p class="fragment">Die sechs Lektionen dieser Woche — live durchgespielt.</p>
+  <p class="fragment dim">Struktur, Überblick, Muster — und drei Flows: Grund-Flow, Türsteher, Persona als Linse.</p>
   <div class="spacer"></div>
-  <p class="fragment dim">Der Rest ist Praxis.</p>
+  <p class="fragment">Im Lauf der Woche kommen weitere Flows dazu.</p>
+  <p class="fragment dim">Hier und in <code>/kurs</code> als weitere Schritte, sobald die passende Lektion live ist.</p>
+  <div class="spacer"></div>
+  <p class="fragment highlight">Eigene Flow-Idee? Jetzt notieren.</p>
 </section>
 
 </div>
