@@ -162,23 +162,25 @@ Ergebnis: `output/YYYY-MM-DD/strategy/decision-brief.md`.
 
 **Haltepunkt 2 — der wichtigste:** Lies die Empfehlung. Prüfen, ob die genannten Zahlen wirklich aus dem Feedback stammen. Dann entscheiden, ob du weitergehst.
 
-Sagt der Brief BUILD, kommt eine Weiche, die leicht übersehen wird: `/spec-writer` erwartet als Eingabe einen Brief — und dieser Brief ist an dieser Stelle keine neue Datei, sondern genau die, die du gerade gelesen hast:
+**4. Spec schreiben.** Sagt der Brief BUILD, kommt eine Weiche, die leicht übersehen wird: `/spec-writer` erwartet als Eingabe einen Brief — und dieser Brief ist an dieser Stelle keine neue Datei, sondern genau die, die du gerade gelesen hast:
 
 ```
 /spec-writer output/YYYY-MM-DD/strategy/decision-brief.md
 ```
 
-**4. Spec und Eval.**
+Ergebnis: `output/YYYY-MM-DD/spec-eval/spec.md`.
+
+**5. Eval schreiben.**
 
 ```
 /eval-writer
 ```
 
-Ergebnis: `output/YYYY-MM-DD/spec-eval/spec.md` und `output/YYYY-MM-DD/spec-eval/eval.md`.
+Ergebnis: `output/YYYY-MM-DD/spec-eval/eval.md`.
 
-**Haltepunkt 3:** Lies beide zusammen, bevor irgendetwas gebaut wird. Deckt jedes Eval-Kriterium wirklich etwas aus der Spec ab?
+**Haltepunkt 3:** Lies Spec und Eval zusammen, bevor irgendetwas gebaut wird. Deckt jedes Eval-Kriterium wirklich etwas aus der Spec ab?
 
-**5. Prototyp bauen.**
+**6. Prototyp bauen.**
 
 ```
 /prototype-builder
@@ -186,9 +188,9 @@ Ergebnis: `output/YYYY-MM-DD/spec-eval/spec.md` und `output/YYYY-MM-DD/spec-eval
 
 Ergebnis: `output/YYYY-MM-DD/prototyping/app.html` + `data.js`. Öffne `app.html` per Doppelklick im Finder bzw. Explorer — kein Terminal, kein Server, der Browser springt direkt an.
 
-**Abkürzung:** Wer Spec, Eval und Prototyp in einem Rutsch will statt drei Skills einzeln aufzurufen, nutzt `/build-eval` mit dem Brief-Pfad als Argument — er überspringt automatisch, was schon existiert.
+**Abkürzung:** Wer Spec, Eval und Prototyp — also die Schritte 4 bis 6 — in einem Rutsch will statt drei Skills einzeln aufzurufen, nutzt `/build-eval` mit dem Brief-Pfad als Argument — er überspringt automatisch, was schon existiert.
 
-**6. Prototyp prüfen.**
+**7. Prototyp prüfen.**
 
 ```
 /eval-runner
@@ -198,7 +200,7 @@ Ergebnis: `output/YYYY-MM-DD/prototyping/eval-results.md`.
 
 **Haltepunkt 4:** Schau dir das Ergebnis wirklich an — vor allem jedes UNKLAR, denn das ist kein Ausweichen, sondern ein echter Hinweis, dass du selbst noch einmal reinschauen musst.
 
-**7. Übergabe bündeln.**
+**8. Übergabe bündeln.**
 
 ```
 /handoff-packager
