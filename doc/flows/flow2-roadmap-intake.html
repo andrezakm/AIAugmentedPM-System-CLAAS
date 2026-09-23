@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Flow 2 — Ein Skill solo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0B; --paper:#F4EFE6; --blue:#1A4FFF; --yellow:#FFD400;
+    --rule:rgba(11,11,11,.16); --mute:rgba(11,11,11,.55);
+    --font-display:"Big Shoulders Display",Impact,sans-serif;
+    --font-serif:"Fraunces",Georgia,serif;
+    --font-sans:"Space Grotesk",-apple-system,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{width:1200px;background:var(--paper);color:var(--ink);font-family:var(--font-sans);
+    -webkit-font-smoothing:antialiased;}
+  .wrap{width:1200px;padding:56px;}
+
+  .eyebrow{display:flex;align-items:center;gap:16px;font-family:var(--font-mono);
+    font-size:17px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:26px;}
+  .eyebrow .num{color:var(--blue);font-weight:700;}
+  .eyebrow .rule{flex:1;height:1px;background:var(--rule);}
+
+  h1{font-family:var(--font-display);font-weight:900;line-height:.94;letter-spacing:-.01em;
+    font-size:76px;margin:0 0 18px;}
+  h1 em{font-family:var(--font-serif);font-style:italic;font-weight:400;}
+  .subtitle{font-family:var(--font-sans);font-weight:500;font-size:25px;line-height:1.4;
+    color:var(--mute);max-width:80ch;margin:0 0 48px;}
+
+  .diagram{width:1038px;margin:0 auto;}
+  .center{display:flex;justify-content:center;}
+
+  .chips-row{display:flex;justify-content:center;gap:18px;margin-bottom:14px;}
+  .chip{font-family:var(--font-mono);font-weight:700;font-size:20px;border:1px solid var(--ink);
+    padding:10px 22px;background:var(--paper);}
+
+  .arrow-row{display:flex;justify-content:center;padding:8px 0;}
+  .arrow-row .glyph{font-size:32px;color:var(--blue);line-height:1;}
+
+  .artifact{border:1px solid var(--rule);background:rgba(11,11,11,.03);
+    padding:16px 22px;display:inline-flex;flex-direction:column;gap:4px;text-align:center;}
+  .artifact .path{font-family:var(--font-mono);font-weight:700;font-size:22px;color:var(--ink);}
+  .artifact .desc{font-family:var(--font-sans);font-size:18px;color:var(--mute);}
+
+  .skillcard{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+    padding:22px 26px;}
+  .skillcard .name{font-family:var(--font-mono);font-weight:700;font-size:33px;color:var(--ink);display:block;margin-bottom:14px;}
+  .skillcard .name .slash{color:var(--blue);}
+  .checks{display:flex;flex-wrap:wrap;gap:8px 0;font-family:var(--font-mono);font-size:19px;color:var(--mute);}
+  .checks .sep{color:var(--blue);margin:0 12px;}
+
+  .split{display:flex;justify-content:center;gap:38px;align-items:flex-start;margin-top:8px;}
+  .col{width:500px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+
+  .loop{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:6px;}
+  .loop .glyph{font-size:30px;color:var(--blue);line-height:1;}
+  .loop .label{font-family:var(--font-mono);font-size:16px;color:var(--blue);font-weight:700;text-align:center;}
+
+  .exitcard{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+    padding:22px 24px;text-align:center;width:100%;}
+  .exitcard .icon{font-size:36px;color:var(--blue);line-height:1;margin-bottom:6px;display:block;}
+  .exitcard h3{font-family:var(--font-display);font-weight:800;font-size:30px;margin:0 0 8px;letter-spacing:-.005em;}
+  .exitcard p{font-family:var(--font-sans);font-size:18px;color:var(--mute);margin:0;line-height:1.35;}
+
+  .human-card{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--yellow);
+    padding:20px 22px;text-align:center;width:100%;}
+  .human-card .label{font-family:var(--font-mono);font-weight:700;font-size:21px;color:var(--ink);display:block;}
+  .human-card .note{font-family:var(--font-sans);font-size:18px;color:var(--mute);margin-top:4px;display:block;}
+
+  .optional-wrap{margin-top:34px;border:1px dashed var(--blue);padding:30px 28px 26px;position:relative;}
+  .optional-tag{position:absolute;top:-15px;left:20px;background:var(--paper);padding:0 10px;
+    font-family:var(--font-mono);font-weight:700;font-size:16px;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;}
+  .skillcard.muted{box-shadow:none;border:1px solid var(--mute);opacity:.92;}
+  .skillcard.muted .name{color:var(--mute);}
+  .skillcard.muted .name .slash{color:var(--blue);}
+
+  .badge-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;}
+  .swatch{width:16px;height:16px;border:1px solid var(--ink);background:var(--yellow);display:inline-block;}
+  .badge-row .txt{font-family:var(--font-mono);font-size:17px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);}
+  .badge-row .sep{color:var(--blue);font-family:var(--font-mono);font-size:17px;}
+  .badge-row .pathtxt{font-family:var(--font-mono);font-size:19px;font-weight:700;color:var(--ink);}
+
+  .note-line{font-family:var(--font-sans);font-size:18px;color:var(--mute);text-align:center;margin-top:14px;line-height:1.4;}
+
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--rule);
+    font-family:var(--font-mono);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);
+    text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow"><span class="num">§ Flow 2</span><span class="rule"></span><span>Woche 5 · Das System</span></div>
+
+  <h1>Flow 2 — Ein Skill <em>solo</em></h1>
+  <p class="subtitle">Der Türsteher vor dem PM</p>
+
+  <div class="diagram">
+
+    <div class="chips-row">
+      <span class="chip">Vertrieb</span>
+      <span class="chip">Kundenservice</span>
+      <span class="chip">Kunde</span>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="center">
+      <div class="artifact">
+        <span class="path">input/roadmap-requests/</span>
+        <span class="desc">oder direkt in den Chat</span>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="skillcard">
+      <span class="name"><span class="slash">/</span>roadmap-intake</span>
+      <div class="checks">
+        <span>Was</span><span class="sep">·</span>
+        <span>Für wen / Problem</span><span class="sep">·</span>
+        <span>Nutzen + Erfolgssignal</span><span class="sep">·</span>
+        <span>Größe</span><span class="sep">·</span>
+        <span>Strategie-Fit</span>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="col">
+        <div class="exitcard">
+          <span class="icon">↩</span>
+          <h3>Zurück an Stakeholder</h3>
+          <p>mit konkreten Hinweisen, was fehlt</p>
+        </div>
+        <div class="loop">
+          <span class="glyph">↩</span>
+          <span class="label">ergänzt erneut einreichen</span>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="exitcard">
+          <span class="icon">→</span>
+          <h3>Aufgenommen</h3>
+        </div>
+        <div class="arrow-row"><span class="glyph">↓</span></div>
+        <div class="artifact" style="width:100%;">
+          <span class="path">output/roadmap/intake/‹name›.md</span>
+        </div>
+        <div class="arrow-row"><span class="glyph">↓</span></div>
+        <div class="human-card">
+          <span class="label">Kalendertermin mit dem PM</span>
+          <span class="note">bleibt menschlich</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="optional-wrap">
+      <span class="optional-tag">optional</span>
+      <div class="arrow-row"><span class="glyph">↓</span></div>
+      <div class="skillcard muted">
+        <span class="name"><span class="slash">/</span>product-roadmap</span>
+      </div>
+      <div class="arrow-row"><span class="glyph">↓</span></div>
+      <div class="center">
+        <div class="artifact">
+          <span class="path">output/roadmap/roadmap.md</span>
+          <span class="desc">Now · Next · Later</span>
+        </div>
+      </div>
+      <div class="badge-row">
+        <span class="swatch"></span>
+        <span class="txt">lebender Zustand</span>
+        <span class="sep">·</span>
+        <span class="pathtxt">output/roadmap/</span>
+      </div>
+      <p class="note-line">Unbewertetes bleibt unter „Ungeklärt“, bis /opportunity-scorer es eingeschätzt hat.</p>
+    </div>
+
+  </div>
+
+  <footer>überproduct · AI-Augmented PM</footer>
+
+</div>
+</body>
+</html>

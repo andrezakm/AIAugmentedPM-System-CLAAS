@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Flow 1 — Der Grund-Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0B; --paper:#F4EFE6; --blue:#1A4FFF; --yellow:#FFD400;
+    --rule:rgba(11,11,11,.16); --mute:rgba(11,11,11,.55);
+    --font-display:"Big Shoulders Display",Impact,sans-serif;
+    --font-serif:"Fraunces",Georgia,serif;
+    --font-sans:"Space Grotesk",-apple-system,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{width:1200px;background:var(--paper);color:var(--ink);font-family:var(--font-sans);
+    -webkit-font-smoothing:antialiased;}
+  .wrap{width:1200px;padding:56px;}
+
+  .eyebrow{display:flex;align-items:center;gap:16px;font-family:var(--font-mono);
+    font-size:17px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:26px;}
+  .eyebrow .num{color:var(--blue);font-weight:700;}
+  .eyebrow .rule{flex:1;height:1px;background:var(--rule);}
+
+  h1{font-family:var(--font-display);font-weight:900;line-height:.94;letter-spacing:-.01em;
+    font-size:76px;margin:0 0 18px;}
+  h1 em{font-family:var(--font-serif);font-style:italic;font-weight:400;}
+  .subtitle{font-family:var(--font-sans);font-weight:500;font-size:25px;line-height:1.4;
+    color:var(--mute);max-width:80ch;margin:0 0 24px;}
+
+  .quer{border:1px solid var(--rule);background:rgba(11,11,11,.03);
+    padding:14px 20px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:44px;}
+  .quer .tag{font-family:var(--font-mono);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);}
+  .quer .desc{font-family:var(--font-mono);color:var(--ink);font-size:20px;}
+
+  .diagram{width:1038px;margin:0 auto;}
+
+  .artifact{border:1px solid var(--rule);background:rgba(11,11,11,.03);
+    padding:16px 22px;display:inline-flex;flex-direction:column;gap:4px;}
+  .artifact .path{font-family:var(--font-mono);font-weight:700;font-size:22px;color:var(--ink);}
+  .artifact .desc{font-family:var(--font-sans);font-size:18px;color:var(--mute);}
+  .center{display:flex;justify-content:center;}
+
+  .arrow-row{display:flex;justify-content:center;padding:8px 0;}
+  .arrow-row .glyph{font-size:32px;color:var(--blue);line-height:1;}
+
+  .step-row{display:flex;align-items:flex-start;gap:24px;}
+  .step-block{flex:0 0 620px;width:620px;}
+  .step-side{flex:0 0 394px;width:394px;display:flex;flex-direction:column;justify-content:center;min-height:1px;}
+
+  .step-top{display:flex;align-items:center;gap:14px;}
+  .step-num{font-family:var(--font-mono);font-weight:700;font-size:20px;color:var(--paper);
+    background:var(--ink);padding:8px 12px;letter-spacing:.04em;flex:0 0 auto;}
+
+  .skillcard{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+    padding:18px 24px;flex:1;}
+  .skillcard .name{font-family:var(--font-mono);font-weight:700;font-size:31px;color:var(--ink);}
+  .skillcard .name .slash{color:var(--blue);}
+
+  .step-arrow-out{display:flex;align-items:center;gap:10px;padding:10px 0 0 64px;}
+  .step-arrow-out .glyph{font-size:24px;color:var(--blue);line-height:1;}
+  .step-arrow-out .artifact-inline{font-family:var(--font-mono);font-weight:700;font-size:22px;color:var(--ink);}
+
+  .checkpoint{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--yellow);
+    padding:16px 20px;display:flex;flex-direction:column;gap:6px;}
+  .checkpoint .label{font-family:var(--font-mono);font-weight:700;font-size:21px;color:var(--ink);}
+  .checkpoint .body{font-family:var(--font-sans);font-size:18px;color:var(--ink);line-height:1.35;}
+  .checkpoint .note{font-family:var(--font-mono);font-size:16px;color:var(--mute);margin-top:2px;}
+
+  .bracket{border:2px dashed var(--blue);padding:28px 24px 24px;position:relative;
+    margin:6px -26px 0;}
+  .bracket-tag{position:absolute;top:-17px;left:20px;background:var(--paper);padding:0 10px;
+    font-family:var(--font-mono);font-weight:700;font-size:17px;color:var(--blue);letter-spacing:.02em;}
+
+  .endbox{display:flex;justify-content:center;margin-top:10px;}
+  .endbox .badge{font-family:var(--font-mono);font-weight:700;font-size:26px;color:var(--paper);
+    background:var(--blue);padding:12px 28px;}
+
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--rule);
+    font-family:var(--font-mono);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);
+    text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow"><span class="num">§ Flow 1</span><span class="rule"></span><span>Woche 5 · Das System</span></div>
+
+  <h1>Flow 1 — Der <em>Grund-Flow</em></h1>
+  <p class="subtitle">Vom Rohfeedback zur Übergabe · acht Skills, vier Checkpoints</p>
+
+  <div class="quer">
+    <span class="tag">ablage</span>
+    <span class="desc">Alle Ergebnisse landen in output/YYYY-MM-DD/</span>
+  </div>
+
+  <div class="diagram">
+
+    <div class="center">
+      <div class="artifact">
+        <span class="path">input/raw_feedback/</span>
+        <span class="desc">Slack, E-Mails, Retros, Interviews</span>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="step-row">
+      <div class="step-block">
+        <div class="step-top"><span class="step-num">01</span>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>feedback-synthesizer</span></div>
+        </div>
+        <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">discovery/feedback-clusters.md</span></div>
+      </div>
+      <div class="step-side"></div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="step-row">
+      <div class="step-block">
+        <div class="step-top"><span class="step-num">02</span>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>opportunity-scorer</span></div>
+        </div>
+        <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">strategy/opportunity-scorecard.md</span></div>
+      </div>
+      <div class="step-side">
+        <div class="checkpoint">
+          <span class="label">Checkpoint 1</span>
+          <span class="body">Punkte begründet? Nicht-Produkt-Cluster aussortieren</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="step-row">
+      <div class="step-block">
+        <div class="step-top"><span class="step-num">03</span>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>decision-brief</span></div>
+        </div>
+        <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">strategy/decision-brief.md</span></div>
+      </div>
+      <div class="step-side">
+        <div class="checkpoint">
+          <span class="label">Checkpoint 2</span>
+          <span class="body">BUILD? Zahlen prüfen, entscheiden</span>
+          <span class="note">Dieser Brief ist der Input für Schritt 04</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="bracket">
+      <span class="bracket-tag">Abkürzung: /build-eval erledigt 04–06 in einem Rutsch</span>
+
+      <div class="step-row">
+        <div class="step-block">
+          <div class="step-top"><span class="step-num">04</span>
+            <div class="skillcard"><span class="name"><span class="slash">/</span>spec-writer</span></div>
+          </div>
+          <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">spec-eval/spec.md</span></div>
+        </div>
+        <div class="step-side"></div>
+      </div>
+
+      <div class="arrow-row"><span class="glyph">↓</span></div>
+
+      <div class="step-row">
+        <div class="step-block">
+          <div class="step-top"><span class="step-num">05</span>
+            <div class="skillcard"><span class="name"><span class="slash">/</span>eval-writer</span></div>
+          </div>
+          <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">spec-eval/eval.md</span></div>
+        </div>
+        <div class="step-side">
+          <div class="checkpoint">
+            <span class="label">Checkpoint 3</span>
+            <span class="body">Spec und Eval zusammen lesen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-row"><span class="glyph">↓</span></div>
+
+      <div class="step-row">
+        <div class="step-block">
+          <div class="step-top"><span class="step-num">06</span>
+            <div class="skillcard"><span class="name"><span class="slash">/</span>prototype-builder</span></div>
+          </div>
+          <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">prototyping/app.html + data.js</span></div>
+        </div>
+        <div class="step-side"></div>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="step-row">
+      <div class="step-block">
+        <div class="step-top"><span class="step-num">07</span>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>eval-runner</span></div>
+        </div>
+        <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">prototyping/eval-results.md</span></div>
+      </div>
+      <div class="step-side">
+        <div class="checkpoint">
+          <span class="label">Checkpoint 4</span>
+          <span class="body">Jedes UNKLAR selbst anschauen</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="step-row">
+      <div class="step-block">
+        <div class="step-top"><span class="step-num">08</span>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>handoff-packager</span></div>
+        </div>
+        <div class="step-arrow-out"><span class="glyph">↓</span><span class="artifact-inline">handoff/handoff.md</span></div>
+      </div>
+      <div class="step-side"></div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="endbox"><span class="badge">→ Engineering</span></div>
+
+  </div>
+
+  <footer>überproduct · AI-Augmented PM</footer>
+
+</div>
+</body>
+</html>

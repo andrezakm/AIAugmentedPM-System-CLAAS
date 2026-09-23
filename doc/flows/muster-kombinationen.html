@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Was damit möglich ist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0B; --paper:#F4EFE6; --blue:#1A4FFF; --yellow:#FFD400;
+    --rule:rgba(11,11,11,.16); --mute:rgba(11,11,11,.55);
+    --font-display:"Big Shoulders Display",Impact,sans-serif;
+    --font-serif:"Fraunces",Georgia,serif;
+    --font-sans:"Space Grotesk",-apple-system,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{width:1200px;background:var(--paper);color:var(--ink);font-family:var(--font-sans);
+    -webkit-font-smoothing:antialiased;}
+  .wrap{width:1200px;padding:56px;}
+
+  .eyebrow{display:flex;align-items:center;gap:16px;font-family:var(--font-mono);
+    font-size:17px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:26px;}
+  .eyebrow .num{color:var(--blue);font-weight:700;}
+  .eyebrow .rule{flex:1;height:1px;background:var(--rule);}
+
+  h1{font-family:var(--font-display);font-weight:900;line-height:.94;letter-spacing:-.01em;
+    font-size:76px;margin:0 0 18px;}
+  h1 em{font-family:var(--font-serif);font-style:italic;font-weight:400;}
+  .subtitle{font-family:var(--font-sans);font-weight:500;font-size:25px;line-height:1.4;
+    color:var(--mute);max-width:80ch;margin:0 0 44px;}
+
+  .diagram{width:1038px;margin:0 auto;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .tile{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+    padding:26px 28px;display:flex;flex-direction:column;gap:16px;}
+  .tile.span2{grid-column:1 / -1;}
+
+  .tile-head{display:flex;align-items:center;gap:14px;}
+  .tile-num{font-family:var(--font-mono);font-weight:700;font-size:19px;color:var(--paper);
+    background:var(--ink);padding:6px 11px;letter-spacing:.03em;flex:0 0 auto;}
+  .tile-name{font-family:var(--font-display);font-weight:800;font-size:37px;line-height:1.02;
+    letter-spacing:-.005em;}
+
+  .sketch{display:flex;align-items:center;flex-wrap:wrap;gap:10px;min-height:50px;}
+  .sketch.vertical{flex-direction:column;align-items:flex-start;gap:8px;}
+  .sketch.vertical .arrow-mini{align-self:flex-start;padding-left:4px;}
+  .node{font-family:var(--font-mono);font-weight:700;font-size:19px;border:1px solid var(--ink);
+    background:var(--paper);padding:9px 14px;white-space:nowrap;}
+  .node.ghost{border-style:dashed;border-color:var(--mute);color:var(--mute);font-weight:600;}
+  .node.skip{border-color:var(--mute);color:var(--mute);text-decoration:line-through;
+    font-weight:600;font-size:18px;padding:6px 12px;}
+  .arrow-mini{color:var(--blue);font-size:23px;line-height:1;flex:0 0 auto;}
+  .dots{font-family:var(--font-mono);font-weight:700;font-size:19px;color:var(--mute);}
+
+  .solo-wrap{display:inline-flex;border:2px dashed var(--mute);padding:12px 16px;}
+
+  .ghost-group{border:1px dashed var(--mute);padding:10px 16px;color:var(--mute);
+    font-family:var(--font-mono);font-weight:600;font-size:18px;white-space:nowrap;}
+
+  .arrow-stack{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .skip-row{display:flex;align-items:center;gap:10px;}
+
+  .pill-arrow{display:inline-flex;align-items:center;gap:6px;background:var(--yellow);
+    color:var(--ink);font-family:var(--font-mono);font-weight:700;font-size:18px;
+    padding:7px 12px;white-space:nowrap;}
+
+  .ctx-row{display:flex;flex-direction:column;gap:6px;}
+  .ctx-chain{display:flex;align-items:center;gap:8px;}
+  .ctx-bar{background:var(--ink);color:var(--paper);font-family:var(--font-mono);font-size:18px;
+    font-weight:600;padding:7px 12px;letter-spacing:.02em;white-space:nowrap;}
+  .ctx-stack{display:flex;flex-direction:column;gap:14px;}
+
+  .badge-yellow{display:inline-flex;align-items:center;gap:8px;background:var(--paper);
+    border:1px solid var(--ink);box-shadow:4px 4px 0 var(--yellow);padding:8px 14px;
+    font-family:var(--font-mono);font-weight:700;font-size:18px;letter-spacing:.02em;white-space:nowrap;}
+
+  .example{font-family:var(--font-sans);font-size:21px;color:var(--mute);line-height:1.35;margin:0;}
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);
+    font-family:var(--font-mono);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);
+    text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow"><span class="num">§ Muster</span><span class="rule"></span><span>Woche 5 · Das System</span></div>
+
+  <h1>Was damit <em>möglich</em> ist</h1>
+  <p class="subtitle">Sieben Muster, die Puzzleteile zu kombinieren</p>
+
+  <div class="diagram">
+    <div class="grid">
+
+      <!-- 01 Ein Skill solo -->
+      <div class="tile">
+        <div class="tile-head"><span class="tile-num">01</span><span class="tile-name">Ein Skill <em style="font-family:var(--font-serif);font-style:italic;font-weight:400;">solo</em></span></div>
+        <div class="sketch">
+          <div class="solo-wrap"><span class="node">/devils-advocate</span></div>
+        </div>
+        <p class="example">Eine zweite, kritische Meinung — ohne vorher die ganze Kette zu laufen.</p>
+      </div>
+
+      <!-- 02 Die Kette entlang -->
+      <div class="tile">
+        <div class="tile-head"><span class="tile-num">02</span><span class="tile-name">Die Kette entlang</span></div>
+        <div class="sketch vertical">
+          <span class="node">/feedback-synthesizer</span>
+          <span class="arrow-mini">↓ ···</span>
+          <span class="node">/handoff-packager</span>
+        </div>
+        <p class="example">Vom Rohmaterial bis zur Übergabe, ein roter Faden.</p>
+      </div>
+
+      <!-- 03 Abkürzung über einen Orchestrator -->
+      <div class="tile">
+        <div class="tile-head"><span class="tile-num">03</span><span class="tile-name">Abkürzung über einen Orchestrator</span></div>
+        <div class="sketch vertical">
+          <span class="node">/build-eval</span>
+          <span class="arrow-mini">↓</span>
+          <span class="ghost-group">spec · eval · prototyp</span>
+        </div>
+        <p class="example">Derselbe Weg, gebündelt in einem Aufruf.</p>
+      </div>
+
+      <!-- 04 Quer verketten -->
+      <div class="tile">
+        <div class="tile-head"><span class="tile-num">04</span><span class="tile-name">Quer verketten</span></div>
+        <div class="sketch vertical">
+          <span class="node">decision-brief.md</span>
+          <div class="skip-row">
+            <span class="arrow-mini">↓</span>
+            <span class="node skip">/devils-advocate</span>
+          </div>
+          <span class="node">/spec-writer</span>
+        </div>
+        <p class="example">Jeder Output kann in jeden Skill — die Skills kennen die Reihenfolge nicht.</p>
+      </div>
+
+      <!-- 05 Artefakt als Linse -->
+      <div class="tile">
+        <div class="tile-head"><span class="tile-num">05</span><span class="tile-name">Artefakt als <em style="font-family:var(--font-serif);font-style:italic;font-weight:400;">Linse</em></span></div>
+        <div class="sketch vertical">
+          <span class="node">personas.md</span>
+          <span class="pill-arrow">↓ als Linse</span>
+          <span class="node">/opportunity-scorer</span>
+        </div>
+        <p class="example">Ein Ergebnis macht einen anderen Skill schärfer.</p>
+      </div>
+
+      <!-- 06 Gleiche Kette, anderer Kontext -->
+      <div class="tile">
+        <div class="tile-head"><span class="tile-num">06</span><span class="tile-name">Gleiche Kette, anderer Kontext</span></div>
+        <div class="sketch">
+          <div class="ctx-stack">
+            <div class="ctx-row">
+              <div class="ctx-chain">
+                <span class="node">/opportunity-scorer</span>
+                <span class="arrow-mini">→</span>
+                <span class="node">/decision-brief</span>
+              </div>
+              <span class="ctx-bar">context/ · Firma A</span>
+            </div>
+            <div class="ctx-row">
+              <div class="ctx-chain">
+                <span class="node">/opportunity-scorer</span>
+                <span class="arrow-mini">→</span>
+                <span class="node">/decision-brief</span>
+              </div>
+              <span class="ctx-bar">context/ · Firma B</span>
+            </div>
+          </div>
+        </div>
+        <p class="example">Kontext tauschen, Skills unverändert lassen.</p>
+      </div>
+
+      <!-- 07 Lebender Zustand (full width) -->
+      <div class="tile span2">
+        <div class="tile-head"><span class="tile-num">07</span><span class="tile-name">Lebender Zustand</span></div>
+        <div class="sketch">
+          <span class="node">/product-roadmap</span>
+          <span class="arrow-mini">→</span>
+          <span class="node">roadmap.md</span>
+          <span class="arrow-mini">↩</span>
+          <span class="badge-yellow">lebender Zustand</span>
+        </div>
+        <p class="example">Wächst mit jedem Lauf, statt neu angelegt zu werden.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>überproduct · AI-Augmented PM</footer>
+
+</div>
+</body>
+</html>

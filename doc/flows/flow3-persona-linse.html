@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Flow 3 — Persona als Linse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0B; --paper:#F4EFE6; --blue:#1A4FFF; --yellow:#FFD400;
+    --rule:rgba(11,11,11,.16); --mute:rgba(11,11,11,.55);
+    --rule-ink:rgba(244,239,230,.18); --mute-ink:rgba(244,239,230,.55);
+    --font-display:"Big Shoulders Display",Impact,sans-serif;
+    --font-serif:"Fraunces",Georgia,serif;
+    --font-sans:"Space Grotesk",-apple-system,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{width:1200px;background:var(--paper);color:var(--ink);font-family:var(--font-sans);
+    -webkit-font-smoothing:antialiased;}
+  .wrap{width:1200px;padding:56px;}
+
+  .eyebrow{display:flex;align-items:center;gap:16px;font-family:var(--font-mono);
+    font-size:17px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:26px;}
+  .eyebrow .num{color:var(--blue);font-weight:700;}
+  .eyebrow .rule{flex:1;height:1px;background:var(--rule);}
+
+  h1{font-family:var(--font-display);font-weight:900;line-height:.94;letter-spacing:-.01em;
+    font-size:76px;margin:0 0 18px;}
+  h1 em{font-family:var(--font-serif);font-style:italic;font-weight:400;}
+  .subtitle{font-family:var(--font-sans);font-weight:500;font-size:25px;line-height:1.4;
+    color:var(--mute);max-width:80ch;margin:0 0 48px;}
+
+  .diagram{width:1038px;margin:0 auto;}
+  .center{display:flex;justify-content:center;}
+
+  .arrow-row{display:flex;justify-content:center;padding:8px 0;}
+  .arrow-row .glyph{font-size:32px;color:var(--blue);line-height:1;}
+
+  .artifact{border:1px solid var(--rule);background:rgba(11,11,11,.03);
+    padding:16px 22px;display:inline-flex;flex-direction:column;gap:4px;text-align:center;}
+  .artifact .path{font-family:var(--font-mono);font-weight:700;font-size:22px;color:var(--ink);}
+  .artifact .desc{font-family:var(--font-sans);font-size:18px;color:var(--mute);}
+
+  .skillcard{background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+    padding:18px 24px;text-align:center;}
+  .skillcard .name{font-family:var(--font-mono);font-weight:700;font-size:31px;color:var(--ink);}
+  .skillcard .name .slash{color:var(--blue);}
+  .skillcard.linse{box-shadow:6px 6px 0 var(--yellow);}
+
+  .runlabel{font-family:var(--font-mono);font-weight:700;font-size:18px;letter-spacing:.04em;
+    color:var(--blue);text-align:center;margin-bottom:10px;}
+  .runlabel.linse{color:#8a6d00;}
+
+  .two-col-wrap{position:relative;margin-top:8px;}
+  .two-col{display:flex;gap:74px;align-items:flex-start;}
+  .col{width:460px;display:flex;flex-direction:column;}
+  .col.col-b{width:504px;}
+  .col > .artifact{width:100%;}
+  .artifact .path.tight{font-size:19px;white-space:nowrap;}
+
+  .tag{display:inline-block;margin-top:10px;font-family:var(--font-mono);font-size:16px;color:var(--mute);
+    border:1px solid var(--rule);padding:6px 12px;align-self:center;}
+
+  .sidenote{margin-top:16px;padding-top:14px;border-top:1px dashed var(--rule);
+    font-family:var(--font-sans);font-size:17px;color:var(--mute);line-height:1.4;text-align:center;}
+  .sidenote .p{font-family:var(--font-mono);font-size:18px;color:var(--ink);}
+
+  .elbow{position:absolute;background:var(--yellow);}
+  .elbow.h1{left:460px;width:32px;height:5px;}
+  .elbow.v{left:492px;width:5px;}
+  .elbow.h2{left:492px;width:42px;height:5px;}
+  .elbow.h2::after{content:"";position:absolute;right:-2px;top:-6px;border-style:solid;
+    border-width:8px 0 8px 12px;border-color:transparent transparent transparent var(--yellow);}
+  .elbow-lbl{position:absolute;left:412px;width:110px;text-align:center;
+    font-family:var(--font-mono);font-weight:700;font-size:16px;color:#6b5500;
+    background:var(--yellow);padding:5px 0;}
+
+  .foundation{margin-top:44px;background:var(--ink);color:var(--paper);
+    padding:30px 32px 32px;box-shadow:8px 8px 0 var(--yellow);}
+  .foundation .lbl{font-family:var(--font-mono);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--yellow);margin-bottom:10px;}
+  .foundation p{font-family:var(--font-sans);font-size:21px;line-height:1.45;margin:0 0 10px;color:var(--paper);}
+  .foundation p.mute{color:rgba(244,239,230,.85);font-family:var(--font-mono);font-size:19px;margin:0;}
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);
+    font-family:var(--font-mono);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);
+    text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow"><span class="num">§ Flow 3</span><span class="rule"></span><span>Woche 5 · Das System</span></div>
+
+  <h1>Flow 3 — Persona als <em>Linse</em></h1>
+  <p class="subtitle">Ein Discovery-Ergebnis schärft die Strategie</p>
+
+  <div class="diagram">
+
+    <div class="center">
+      <div class="artifact">
+        <span class="path">input/raw_feedback/</span>
+      </div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="center">
+      <div class="skillcard"><span class="name"><span class="slash">/</span>feedback-synthesizer</span></div>
+    </div>
+
+    <div class="arrow-row"><span class="glyph">↓</span></div>
+
+    <div class="center">
+      <div class="artifact">
+        <span class="path">discovery/feedback-clusters.md</span>
+      </div>
+    </div>
+
+    <div class="two-col-wrap">
+      <div class="two-col">
+
+        <div class="col">
+          <div class="arrow-row"><span class="glyph">↓</span></div>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>user-personas</span></div>
+          <div class="arrow-row"><span class="glyph">↓</span></div>
+          <div class="artifact">
+            <span class="path">discovery/personas.md</span>
+          </div>
+          <div class="center"><span class="tag">jede Aussage: Beleg oder Annahme</span></div>
+          <div class="sidenote">
+            Ohne eigene Interviews:<br>
+            <span class="p">output/discovery/personas-beispiel.md</span><br>
+            (Web-Recherche, niedrigere Konfidenz)
+          </div>
+        </div>
+
+        <div class="col col-b">
+          <div class="arrow-row"><span class="glyph">↓</span></div>
+          <div class="runlabel">Lauf 1 · ohne Linse</div>
+          <div class="skillcard"><span class="name"><span class="slash">/</span>opportunity-scorer</span></div>
+          <div class="arrow-row"><span class="glyph">↓</span></div>
+          <div class="artifact">
+            <span class="path">opportunity-scorecard.md</span>
+          </div>
+          <div class="arrow-row"><span class="glyph">↓</span></div>
+          <div class="runlabel linse">Lauf 2 · mit Linse</div>
+          <div class="skillcard linse"><span class="name"><span class="slash">/</span>opportunity-scorer</span></div>
+          <div class="arrow-row"><span class="glyph">↓</span></div>
+          <div class="artifact">
+            <span class="path tight">opportunity-scorecard-mit-linse.md</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="elbow h1" style="top:213px;"></div>
+      <div class="elbow v" style="top:213px;height:180px;"></div>
+      <div class="elbow h2" style="top:390px;"></div>
+      <div class="elbow-lbl" style="top:283px;">als Linse</div>
+    </div>
+
+    <div class="foundation">
+      <div class="lbl">Vergleich</div>
+      <p>Gleiche Reihenfolge, schärfere Begründung — ein Cluster entpuppt sich als internes Thema.</p>
+      <p class="mute">Der Scorer weiß nichts von Personas. Du entscheidest, was er liest.</p>
+    </div>
+
+  </div>
+
+  <footer>überproduct · AI-Augmented PM</footer>
+
+</div>
+</body>
+</html>

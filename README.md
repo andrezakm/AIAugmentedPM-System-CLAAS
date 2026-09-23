@@ -40,6 +40,7 @@ Zwei aufeinander aufbauende Kurse führen durch das System — jeder mit kleinen
 ## Dokumentation — wo finde ich was?
 
 - **Visuelle System-Karte:** [doc/System-Karte.html](doc/System-Karte.html) — die sieben Bereiche, alle Skills, der Fluss und die PM↔Dev-Grenze auf einen Blick (im Browser öffnen)
+- **Flow-Grafiken:** [`doc/flows/`](doc/flows/) — die Flows als Bild (PNG, direkt in VS Code ansehbar) und als HTML: die sieben Kombinationsmuster, der Grund-Flow, ein Skill solo, Persona als Linse
 - **Kurse & Präsentationen:** die HTML-Dateien in [`doc/`](doc/) (im Browser öffnen)
 - **Skill-Details:** pro Skill ein `README.md` unter `.claude/skills/[name]/`
 - **Semantische Skill-Karte:** [`skills/`](skills/) — die sieben Bereiche mit je einer Kurzreferenz
@@ -165,7 +166,7 @@ Schritt 3 — Plan machen
 ├── context/             das Fundament: company, strategy, product, team, …
 ├── input/               Rohdaten (inkl. ptw-workshop/ Fallbeispiel)
 ├── output/              Ergebnisse: output/YYYY-MM-DD/ pro Lauf, output/roadmap/ + output/meta/ lebend
-├── doc/                 die HTML-Präsentationen (inkl. System-Karte)
+├── doc/                 die HTML-Präsentationen (inkl. System-Karte), Flow-Grafiken in doc/flows/
 ├── skills/              semantische Karte der 7 Bereiche (je ein README)
 ├── scripts/             persönliche Sandbox für neue Skills
 └── .claude/skills/      die ausführbaren Skills (je mit eigenem README)
