@@ -1,7 +1,6 @@
 ---
 name: handoff-packager
 description: Bündelt alle vorhandenen Artefakte eines Runs (Spec, Eval, Prototyp-Optionen, Decision Brief) zu einem Cover-Sheet mit nächsten Schritten und expliziter PM-vs-Dev-Trennung — erstellt kein neues Artefakt. Aufrufen, wenn ein fertiger Flow an Dev übergeben werden soll.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools. Keine MCP-Tools.

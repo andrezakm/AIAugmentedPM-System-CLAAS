@@ -1,7 +1,6 @@
 ---
 name: slack-importer
 description: Importiert und strukturiert Slack-Export-Dateien (JSON, CSV oder Markdown/Text) aus einem Ordner in ein cluster-fähiges Feedback-Format. Aufrufen, wenn Slack-Nachrichten als zusätzliche Quelle für den Feedback-Synthesizer aufbereitet werden sollen.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools. Keine MCP-Tools.

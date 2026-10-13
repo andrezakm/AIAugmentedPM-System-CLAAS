@@ -1,8 +1,6 @@
 ---
 name: PTW-workshop
 description: Führt einen vollständigen Play-to-Win (PTW) Strategie-Workshop durch. Aufrufen, wenn jemand eine Strategie analysieren, implizite oder explizite Entscheidungen entlang der Choice Cascade aufdecken oder einen ersten qualifizierten PTW-Strategieentwurf inklusive reverse-engineerter Annahmen und Experiment-Designs erstellen will. Quelle können context/, eigene Dokumente oder eine öffentliche Web-Recherche zu einer Firma sein.
-disable-model-invocation: true
-allowed-tools: Read, Write, WebSearch, WebFetch, Bash(mkdir *), Agent
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools (Read, Write, WebSearch, WebFetch, Bash für `mkdir`, Agent-Subagenten). Keine MCP-Tools (`mcp__filesystem__*` o. ä.).

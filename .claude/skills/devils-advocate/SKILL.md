@@ -1,7 +1,6 @@
 ---
 name: devils-advocate
 description: Hinterfragt einen Decision Brief systematisch, deckt die stillschweigenden Annahmen dahinter auf und liefert ein Verdikt (Proceed / Pause / Kill). Aufrufen, bevor eine BUILD-Empfehlung unkritisch weiterverfolgt wird.
-allowed-tools: Read, Write
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools (`mcp__filesystem__*`).

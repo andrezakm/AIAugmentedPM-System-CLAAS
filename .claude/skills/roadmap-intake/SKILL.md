@@ -1,7 +1,6 @@
 ---
 name: roadmap-intake
 description: Prüft eine rohe Stakeholder-Anfrage auf Vollständigkeit, bevor sie in die Roadmap aufgenommen wird — nutze diesen Skill für jede neue Idee, jeden Feature-Wunsch oder jede Anfrage, die noch nicht strukturiert vorliegt.
-allowed-tools: Read, Write, Glob
 ---
 
 # Skill: Roadmap Intake

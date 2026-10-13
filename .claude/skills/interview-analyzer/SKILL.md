@@ -1,7 +1,6 @@
 ---
 name: interview-analyzer
 description: Analysiert qualitative Interview-Transkripte zu Einzel-Analysen (6 Dimensionen — Profil, Sentiment, Probleme, Dringlichkeit, Bedürfnisse, Zitate) und einer Cross-Interview-Synthese. Aufrufen, wenn Interview-Dateien aus einem Ordner wie `input/interviews/` ausgewertet werden sollen.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools. Keine MCP-Tools.

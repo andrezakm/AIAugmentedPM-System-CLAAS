@@ -1,7 +1,6 @@
 ---
 name: kurs
 description: Interaktive Version der sechs Woche-5-Circle-Lektionen — Schritt N im Kurs entspricht Lektion N in Circle, live im Repo durchgespielt statt nur gelesen. Aufrufen mit `/kurs`, wenn der Woche-5-System-Kurs durchlaufen werden soll.
-disable-model-invocation: true
 ---
 
 # Kurs: Woche 5 — Das System

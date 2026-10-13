@@ -9,7 +9,7 @@
 
 ## Was das ist
 
-Ein Claude-Code-Skill, der aus rohen Organisationsdokumenten einen vollständigen Play-to-Win-(PTW)-Strategie-Workshop simuliert. Er erzeugt einen qualifizierten ersten PTW-Choice-Cascade-Entwurf — Winning Aspiration, Where to Play, How to Win, Capabilities, Management Systems — plus Spannungen, Mehrdeutigkeiten, reverse-engineerte Annahmen und Experiment-Designs, über sechs strukturierte Schritte mit verpflichtenden menschlichen Checkpoints.
+Ein Skill, der aus rohen Organisationsdokumenten einen vollständigen Play-to-Win-(PTW)-Strategie-Workshop simuliert. Er erzeugt einen qualifizierten ersten PTW-Choice-Cascade-Entwurf — Winning Aspiration, Where to Play, How to Win, Capabilities, Management Systems — plus Spannungen, Mehrdeutigkeiten, reverse-engineerte Annahmen und Experiment-Designs, über sechs strukturierte Schritte mit verpflichtenden menschlichen Checkpoints.
 
 Aufruf mit `/PTW-workshop`.
 

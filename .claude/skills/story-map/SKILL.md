@@ -1,7 +1,6 @@
 ---
 name: story-map
 description: Wenn eine Spec vorliegt (oder ersatzweise ein Brief) und in eine nach Aktivitäten, Tasks und Release-Slices geordnete Story Map übersetzt werden soll — die Naht zwischen Spec und Bau.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`-, `Write`- und `Glob`-Tools. Keine MCP-Tools.

@@ -1,7 +1,6 @@
 ---
 name: insight-validator
 description: Validiert eine einzelne Insight oder Hypothese systematisch gegen den Projektkontext — First Impression, Up-/Downside mit Web-Research und Experiment-Design, mit zwei bewussten Haltepunkten. Aufrufen, wenn eine Erkenntnis aus einem Gespräch, Datenpunkt oder Bauchgefühl vor der Weiterverfolgung geprüft werden soll.
-allowed-tools: Read, Write, Glob, WebSearch, WebFetch, Agent
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools und Agent-Subagenten. Keine MCP-Tools (`mcp__filesystem__*`).

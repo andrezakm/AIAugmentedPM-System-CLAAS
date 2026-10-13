@@ -1,7 +1,6 @@
 ---
 name: option-stormer
 description: Baut aus einer Spec drei strukturell verschiedene Zero-Install-HTML-Prototypen parallel und vergleicht sie — der Willison-Move, wenn eine Kern-UI-Entscheidung noch offen ist.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools. Keine MCP-Tools.

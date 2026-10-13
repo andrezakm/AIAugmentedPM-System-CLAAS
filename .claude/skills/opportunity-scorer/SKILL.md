@@ -1,7 +1,6 @@
 ---
 name: opportunity-scorer
 description: Bewertet Feedback-Cluster als Produktmöglichkeiten anhand von Vision-Fit, Wiederholbarkeit und Baubarkeit gegen `context/company.md` und `context/strategy.md`. Aufrufen nach dem Feedback-Synthesizer, um Opportunities priorisierbar zu machen.
-allowed-tools: Read, Write
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools (`mcp__filesystem__*`).

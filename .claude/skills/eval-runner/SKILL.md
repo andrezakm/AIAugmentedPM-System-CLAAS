@@ -1,7 +1,6 @@
 ---
 name: eval-runner
 description: Prüft einen gebauten Zero-Install-HTML-Prototyp (app.html + data.js) gegen eine Eval.md und liefert PASS/FAIL/UNKLAR pro Kriterium — wenn ein Prototyp gegen seine Abnahmekriterien bewertet werden soll.
-allowed-tools: Read, Write
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools.

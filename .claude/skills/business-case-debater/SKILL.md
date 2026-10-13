@@ -1,7 +1,6 @@
 ---
 name: business-case-debater
 description: Führt eine vollständige Business-Case-Analyse in 6 Phasen durch — Web-Research, Ist-Analyse, Hypothesen, 5-Rollen-Debatte, Synthese, Bericht. Aufrufen als eigenständiges, interaktives Subsystem, wenn ein Business Case mit strukturierter Debatte und Recherche durchleuchtet werden soll.
-allowed-tools: Read, Write, Glob, WebSearch, WebFetch, Agent
 ---
 
 # Business Case Debater — Orchestration Guide for GitHub Copilot

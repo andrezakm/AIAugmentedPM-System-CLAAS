@@ -1,7 +1,6 @@
 ---
 name: build-eval
 description: Orchestriert Spec, Eval und einen lauffähigen Zero-Install-HTML-Prototyp in einem einzigen Lauf aus einem Brief — überspringt Schritte deren Dateien schon existieren. Aufrufen als Shortcut für den gesamten Spec-Eval-Zyklus statt Spec-Writer, Eval-Writer und Prototype-Builder einzeln aufzurufen.
-allowed-tools: Read, Write, Glob
 ---
 
 # Orchestrator: Spec, Eval & Prototyp bauen

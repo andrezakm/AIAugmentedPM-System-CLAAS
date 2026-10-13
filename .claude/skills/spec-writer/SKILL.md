@@ -1,7 +1,6 @@
 ---
 name: spec-writer
 description: Übersetzt einen Brief in eine Spec, die beschreibt was gebaut wird — nicht wie. Aufrufen, wenn eine Entscheidung getroffen ist und die Grundlage für Eval und Prototyp gebraucht wird.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`-, `Write`- und `Glob`-Tools. Keine MCP-Tools.

@@ -1,7 +1,6 @@
 ---
 name: feedback-synthesizer
 description: Verdichtet rohes Kundenfeedback aus einem Ordner (Slack-Exports, E-Mails, Interview-Notizen) zu 3–6 belegten thematischen Clustern mit Direktzitaten. Aufrufen als ersten Schritt der Discovery-Phase, wenn rohes Feedback strukturiert werden soll.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools. Keine MCP-Tools (`mcp__filesystem__*`).

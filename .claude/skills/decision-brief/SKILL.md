@@ -1,7 +1,6 @@
 ---
 name: decision-brief
 description: Leitet aus einer Opportunity-Scorecard einen 1-Pager mit eindeutiger Empfehlung (BUILD / SKIP / MEHR DATEN) ab. Aufrufen, wenn aus bewerteten Opportunities eine klare Produktentscheidung vorbereitet werden soll.
-allowed-tools: Read, Write
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools (`mcp__filesystem__*`).

@@ -1,7 +1,6 @@
 ---
 name: product-roadmap
 description: Sequenziert Ideen mit vorhandenem Priorisierungssignal (Opportunity-Scorecard oder Decision Brief) in eine lebende Roadmap (Now/Next/Later, optional Timeline) — nutze diesen Skill, um Reihenfolge und Status sichtbar zu machen, nicht um Ideen neu zu bewerten. Eine aufgenommene Idee allein, ohne eigenes Priorisierungssignal, reicht dafür nicht — sie landet unter „Ungeklärt".
-allowed-tools: Read, Write, Glob
 ---
 
 # Skill: Product Roadmap

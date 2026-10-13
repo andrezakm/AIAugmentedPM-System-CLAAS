@@ -1,7 +1,6 @@
 ---
 name: zeig_mir_teamwork
 description: Interaktiver 12-Schritte-Kurs zu Teamwork mit einem geteilten pm-workspace — Zimmer-vs-Wohnzimmer-Prinzip, Git-Workflow für Skills und Context, Rollenbeispiel Anna & Ben. Aufrufen mit `/zeig_mir_teamwork`, nach dem System-Kurs, wenn das System im Team eingeführt werden soll.
-disable-model-invocation: true
 ---
 
 # Kurs: Teamwork mit GitHub Copilot
@@ -367,11 +366,11 @@ Wer ist der Guardian des Wohnzimmers? Wer merged PRs, wer achtet darauf dass con
 
 Du weißt wie das Zimmer aussieht. Du weißt wie das Wohnzimmer aussieht. Du weißt wie der Übergang funktioniert.
 
-Wenn du dir während des Kurses Notizen gemacht hast — jetzt ist der Moment. Sag Claude:
+Wenn du dir während des Kurses Notizen gemacht hast — jetzt ist der Moment. Sag Copilot:
 
 > "Ich habe den Teamwork-Kurs durchgearbeitet. Hier sind meine Notizen: [deine Notizen]. Hilf mir einen konkreten Plan zu erstellen: wie setze ich das System mit meinem Team auf, was passe ich an, welche Spielregeln legen wir fest, wer übernimmt was?"
 
-Claude arbeitet dann mit dir durch: was ihr schon habt, was ihr aufbauen müsst, welche Spielregeln ihr festlegen solltet, wer den Guardian des Wohnzimmers macht.
+Copilot arbeitet dann mit dir durch: was ihr schon habt, was ihr aufbauen müsst, welche Spielregeln ihr festlegen solltet, wer den Guardian des Wohnzimmers macht.
 
 **Für den Überblick:** Die Präsentation `doc/PM-Teamwork-Übersicht.html` zeigt alles nochmal komprimiert — Zimmer/Wohnzimmer, Branch/PR/Review/Merge, den Anna-Ben-Flow, Spielregeln. Nützlich als Referenz im Team-Gespräch oder beim Onboarding neuer Kollegen.
 

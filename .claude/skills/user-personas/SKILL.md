@@ -1,7 +1,6 @@
 ---
 name: user-personas
 description: Verdichtet vorhandene Discovery-Belege oder Schreibtisch-/Web-Recherche zu 1–3 evidenzbasierten Personas, bei denen jede Aussage entweder ein Beleg oder eine markierte Annahme ist. Aufrufen, wenn Feedback-Cluster oder Interviews in handlungsfähige Personas übersetzt werden sollen, oder wenn noch keine eigenen Interviews vorliegen und eine erste, ehrlich niedrig-konfidente Persona-Hypothese aus öffentlichen Quellen gebraucht wird.
-allowed-tools: Read, Write, Glob, WebSearch, WebFetch
 ---
 
 # Skill: User Personas

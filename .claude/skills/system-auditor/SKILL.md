@@ -1,7 +1,6 @@
 ---
 name: system-auditor
 description: Prüft den gesamten pm-workspace — befüllte Context-Files, vorhandene Skills, bestehende Runs, Sandbox und Präsentationen — im Ampelsystem und schreibt eine priorisierte Empfehlung. Aufrufen als Einstiegspunkt, wenn unklar ist wo man im System steht.
-allowed-tools: Read, Write, Glob
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten Tools. Keine MCP-Tools.

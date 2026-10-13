@@ -1,7 +1,6 @@
 ---
 name: prototype-builder
 description: Baut einen Zero-Install-HTML-Prototyp (app.html + data.js) aus einer Spec — für eine einzelne Variante eines Features. Für drei Varianten: option-stormer.
-allowed-tools: Read, Write
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools.

@@ -1,7 +1,6 @@
 ---
 name: success-metrics
 description: Definiert, woran ein Feature oder ein strategischer Bet als erfolgreich gilt — North-Star-, Input- und Guardrail-Metriken mit Baseline und Zielwert, oder eine einfache Erfolgskriterien-Liste; aufrufen, sobald eine Spec oder ein Decision Brief steht und die Outcome-Frage noch offen ist.
-allowed-tools: Read, Write
 ---
 
 # Skill: Success Metrics

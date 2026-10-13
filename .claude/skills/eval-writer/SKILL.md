@@ -1,7 +1,6 @@
 ---
 name: eval-writer
 description: Übersetzt eine Spec in 8–12 eindeutige pass/fail-Kriterien für den späteren Prototyp. Aufrufen nach dem Spec-Writer, bevor ein Prototyp gebaut oder gegen seine Abnahmekriterien geprüft wird.
-allowed-tools: Read, Write
 ---
 
 > **Hinweis:** Verwende ausschließlich die eingebauten `Read`- und `Write`-Tools. Keine MCP-Tools.
