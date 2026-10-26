@@ -26,12 +26,13 @@ Dann im Chat:
 
 ## Die Kurse
 
-Zwei aufeinander aufbauende Kurse führen durch das System — jeder mit kleinen Aufgaben zum Mitdenken und Anpassen:
+Drei aufeinander aufbauende Kurse führen durch das System — jeder mit kleinen Aufgaben zum Mitdenken und Anpassen:
 
 | Aufruf | Präsentation | Thema |
 |---|---|---|
 | `/kurs` | [doc/PM-System-Übersicht.html](doc/PM-System-Übersicht.html) | Die interaktive Fassung der Circle-Lektionen dieser Woche — Schritt N im Kurs = Lektion N |
 | `/zeig_mir_teamwork` | [doc/PM-Teamwork-Übersicht.html](doc/PM-Teamwork-Übersicht.html) | Teamwork — Zimmer / Wohnzimmer, Übergabe-Flow |
+| `/mini_git_kurs` | [doc/Git-Grundlagen.html](doc/Git-Grundlagen.html) | Git — Versionierung, Branches, PRs |
 
 **Optionaler Zusatz:** `/PTW-workshop` ([doc/PTW-Workshop-Anleitung.html](doc/PTW-Workshop-Anleitung.html)) — ein Play-to-Win-Strategie-Workshop mit vollständiger Fallstudie (LEGO 2004).
 
@@ -149,6 +150,7 @@ Schritt 1 — Alleine starten
 
 Schritt 2 — Mit dem Team
   /zeig_mir_teamwork   Teamwork-Prinzipien (Zimmer / Wohnzimmer)
+  /mini_git_kurs       Git-Grundlagen — jetzt ergibt es Sinn
 
 Schritt 3 — Plan machen
   „Hier sind meine Notizen aus den Kursen. Hilf mir, einen konkreten Plan zu

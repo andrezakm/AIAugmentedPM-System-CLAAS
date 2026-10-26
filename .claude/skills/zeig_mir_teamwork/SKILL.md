@@ -98,7 +98,7 @@ Jeder klont das Repo. Jeder hat lokal eine Kopie. Änderungen an Skills, Context
 - **Review** = jemand liest die Änderungen und gibt grünes Licht (oder macht Kommentare)
 - **Merge** = die Änderungen sind drin — für alle, sofort beim nächsten `git pull`
 
-Der genaue Git-Ablauf (Branches, Pull Requests, Merge) folgt in einer eigenen Einheit.
+Für den genauen Ablauf gibt es einen eigenen Mini-Git-Kurs: `/mini_git_kurs`.
 
 **Reflexion:** Was in eurem aktuellen PM-Prozess würde in `context/` gehören? Was würde sich ändern wenn alle dasselbe context/strategy.md lesen?
 
@@ -380,4 +380,6 @@ Copilot arbeitet dann mit dir durch: was ihr schon habt, was ihr aufbauen müsst
 
 - `doc/PM-Teamwork-Übersicht.html` — Präsentation: Zimmer/Wohnzimmer, Branch/PR/Flow, Spielregeln
 - `README.md` — Skill-Übersicht
+- `/mini_git_kurs` — Branches, PRs, Merge für PM-Teams + Copilot als Git-Assistent
+- `doc/Git-Grundlagen.html` — Präsentation: Git-Prinzipien und Kommandos im Überblick
 - `doc/System-Karte.html` — Das System auf einen Blick: sieben Bereiche, alle Skills, der Fluss
